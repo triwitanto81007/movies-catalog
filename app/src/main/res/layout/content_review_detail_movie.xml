@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/v_review"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/general_line_view_size"
+        android:layout_marginTop="@dimen/general_parent_margin"
+        android:background="@color/gray_line"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_title_review_movie_detail"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/general_parent_margin"
+        android:paddingStart="@dimen/general_parent_margin"
+        android:paddingEnd="@dimen/general_parent_margin"
+        android:textSize="@dimen/size_text_title1"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/black"
+        android:text="@string/text_review"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_review"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_review_movie_detail"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="@bool/general_recycler_view_nested_scroll"
+        android:paddingTop="@dimen/general_parent_padding"
+        android:paddingBottom="@dimen/general_parent_padding"
+        tools:listitem="@layout/item_review_movie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_review_movie_detail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

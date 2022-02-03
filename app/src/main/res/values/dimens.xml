@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //General
+    <dimen name="match_constraint">0dp</dimen>
+    <dimen name="general_parent_margin">14dp</dimen>
+    <dimen name="general_parent_padding">8dp</dimen>
+    <dimen name="general_parent_margin_horizontal">16dp</dimen>
+    <dimen name="general_recycler_view_item_margin">5dp</dimen>
+    <dimen name="recyclerview_to_toolbar_margin_top">66dp</dimen>
+    <dimen name="general_card_view_radius">10dp</dimen>
+    <dimen name="general_card_view_elevation">5dp</dimen>
+    <dimen name="general_floating_action_button_size">100dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="general_image_profile_size">50dp</dimen>
+    <dimen name="general_line_view_size">1dp</dimen>
+    <dimen name="general_text_distance">3dp</dimen>
+
+    //Text
+    <dimen name="size_text_header1">26sp</dimen>
+    <dimen name="size_text_title1">20sp</dimen>
+    <dimen name="size_text_title2">18sp</dimen>
+    <dimen name="size_text_title3">16sp</dimen>
+    <dimen name="size_text_desc">14sp</dimen>
+    <dimen name="size_text_default">14sp</dimen>
+    <dimen name="size_text_button">16sp</dimen>
+    <dimen name="size_text_small">12sp</dimen>
+
+    //Movie
+    <dimen name="genre_inisial_size">30dp</dimen>
+
+
+</resources>

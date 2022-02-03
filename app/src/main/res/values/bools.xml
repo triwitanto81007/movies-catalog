@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="general_recycler_view_nested_scroll">false</bool>
+</resources>

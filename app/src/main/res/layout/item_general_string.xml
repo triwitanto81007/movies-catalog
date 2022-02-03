@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_portion_recipes"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/general_parent_padding"
+        android:textSize="@dimen/size_text_default"
+        android:textColor="@color/black_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Langkah 1 Tim cokelat pekat bersama mentega tawar hingga meleleh. Sisihkan. Panggang oven pada suhu 180˚ C. Sisihkan."/>
+</androidx.constraintlayout.widget.ConstraintLayout>

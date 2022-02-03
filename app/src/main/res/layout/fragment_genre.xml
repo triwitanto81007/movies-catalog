@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presenter.fragment.GenreFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_home_movies"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="@dimen/match_constraint"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tb_home_movies"
+                android:layout_width="@dimen/match_constraint"
+                android:layout_height="@dimen/recyclerview_to_toolbar_margin_top"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="@string/text_what_genre_do_you_want"
+                app:titleTextColor="@color/black_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_movies"
+                android:layout_width="@dimen/match_constraint"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="@bool/general_recycler_view_nested_scroll"
+                android:paddingTop="@dimen/general_parent_margin"
+                android:paddingBottom="@dimen/general_parent_margin"
+                tools:listitem="@layout/item_movie"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tb_home_movies" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Resep Makanan</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_favorite">Favorite</string>
+    <string name="text_detail">Detail</string>
+    <string name="image_description">Image</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="text_resep_makanan">Resep Makanan</string>
+    <string name="text_bahan">Bahan :</string>
+    <string name="text_cara_pembuatan">Cara Pembuatan :</string>
+    <string name="text_what_genre_do_you_want">What genre do you want?</string>
+    <string name="text_movies">Movies</string>
+    <string name="text_review">Review</string>
+
+</resources>
