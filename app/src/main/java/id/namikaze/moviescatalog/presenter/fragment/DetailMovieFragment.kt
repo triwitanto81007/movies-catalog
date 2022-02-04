@@ -2,23 +2,20 @@ package id.namikaze.moviescatalog.presenter.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.NonNull
-import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import id.namikaze.moviescatalog.BuildConfig
 import id.namikaze.moviescatalog.R
-import id.namikaze.moviescatalog.adapter.GenreAdapter
 import id.namikaze.moviescatalog.adapter.ReviewAdapter
 import id.namikaze.moviescatalog.data.Resource
 import id.namikaze.moviescatalog.databinding.FragmentDetailMovieBinding
@@ -26,7 +23,6 @@ import id.namikaze.moviescatalog.domain.model.MovieDetail
 import id.namikaze.moviescatalog.domain.model.Review
 import id.namikaze.moviescatalog.domain.model.Trailer
 import id.namikaze.moviescatalog.presenter.viewmodel.DetailMovieViewModel
-import id.namikaze.moviescatalog.presenter.viewmodel.GenreViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -43,7 +39,7 @@ class DetailMovieFragment : Fragment() {
         ReviewAdapter()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentDetailMovieBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -51,6 +47,9 @@ class DetailMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.tbMoviesDetail.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
         setupRecyclerView()
 
         viewModel.movieDetail.observe(viewLifecycleOwner, {
@@ -61,8 +60,9 @@ class DetailMovieFragment : Fragment() {
                     }
                 }
                 is Resource.Success -> {
-                    it.getSuccessStateIfNotHandled()?.let {
-                        setupUi(it)
+                    it.getSuccessStateIfNotHandled()?.let { data ->
+                        binding.pbTeamDetail.visibility = View.GONE
+                        setupUi(data)
                     }
                 }
                 is Resource.Error -> {
@@ -79,9 +79,8 @@ class DetailMovieFragment : Fragment() {
                     }
                 }
                 is Resource.Success -> {
-                    it.getSuccessStateIfNotHandled()?.let {
-                        binding.pbTeamDetail.visibility = View.GONE
-                        setupReview(it)
+                    it.getSuccessStateIfNotHandled()?.let { data ->
+                        setupReview(data)
                     }
                 }
                 is Resource.Error -> {
@@ -99,8 +98,8 @@ class DetailMovieFragment : Fragment() {
                     }
                 }
                 is Resource.Success -> {
-                    it.getSuccessStateIfNotHandled()?.let {
-                        setupTrailer(it)
+                    it.getSuccessStateIfNotHandled()?.let { data ->
+                        setupTrailer(data)
                     }
                 }
                 is Resource.Error -> {
@@ -123,7 +122,7 @@ class DetailMovieFragment : Fragment() {
         }
     }
     @SuppressLint("SetTextI18n")
-    private fun setupUi(data: MovieDetail) = with(data) {
+    private fun setupUi(data: MovieDetail) {
         binding.apply{
             Glide.with(this@DetailMovieFragment).load(BuildConfig.IMAGE_BG_URL + data.backdropPath).placeholder(R.drawable.ic_default_image).into(contentHeader.ivBackgroundMovieDetail)
             Glide.with(this@DetailMovieFragment).load(BuildConfig.IMAGE_URL + data.posterPath).placeholder(R.drawable.ic_default_cover_movie).into(contentHeader.ivCoverMovieDetail)
@@ -133,11 +132,11 @@ class DetailMovieFragment : Fragment() {
         }
     }
 
-    private fun setupReview(data: List<Review>) = with(data) {
+    private fun setupReview(data: List<Review>) {
         recyclerViewAdapter.setData(data)
     }
 
-    private fun setupTrailer(data: Trailer) = with(data) {
+    private fun setupTrailer(data: Trailer) {
         if (data.site == "YouTube"){
             binding.ypTrailerMovieDetail.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(@NonNull youTubePlayer: YouTubePlayer) {

@@ -2,7 +2,6 @@ package id.namikaze.moviescatalog.di
 
 import id.namikaze.moviescatalog.domain.usecase.MovieInteractor
 import id.namikaze.moviescatalog.domain.usecase.MovieUseCase
-import id.namikaze.moviescatalog.presenter.fragment.DetailMovieFragment
 import id.namikaze.moviescatalog.presenter.viewmodel.DetailMovieViewModel
 import id.namikaze.moviescatalog.presenter.viewmodel.GenreViewModel
 import id.namikaze.moviescatalog.presenter.viewmodel.MovieViewModel

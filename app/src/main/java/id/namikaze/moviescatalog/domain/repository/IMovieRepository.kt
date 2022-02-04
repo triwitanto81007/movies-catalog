@@ -1,8 +1,6 @@
 package id.namikaze.moviescatalog.domain.repository
 
 import id.namikaze.moviescatalog.data.Resource
-import id.namikaze.moviescatalog.data.source.remote.network.ApiResponse
-import id.namikaze.moviescatalog.data.source.remote.response.*
 import id.namikaze.moviescatalog.domain.model.*
 import kotlinx.coroutines.flow.Flow
 

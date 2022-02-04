@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import id.namikaze.moviescatalog.BuildConfig
 import id.namikaze.moviescatalog.adapter.GenreAdapter
 import id.namikaze.moviescatalog.data.Resource
@@ -46,8 +45,8 @@ class GenreFragment : Fragment() {
                    }
                }
                 is Resource.Success -> {
-                    it.getSuccessStateIfNotHandled()?.let {
-                        recyclerViewAdapter.setData(it)
+                    it.getSuccessStateIfNotHandled()?.let { data ->
+                        recyclerViewAdapter.setData(data)
                     }
                 }
                 is Resource.Error -> {

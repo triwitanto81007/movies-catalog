@@ -1,18 +1,13 @@
 package id.namikaze.moviescatalog.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import id.namikaze.moviescatalog.BuildConfig
 import id.namikaze.moviescatalog.R
-import id.namikaze.moviescatalog.databinding.ItemGenreBinding
-import id.namikaze.moviescatalog.databinding.ItemMovieBinding
 import id.namikaze.moviescatalog.databinding.ItemReviewMovieBinding
-import id.namikaze.moviescatalog.domain.model.Genre
-import id.namikaze.moviescatalog.domain.model.Movie
 import id.namikaze.moviescatalog.domain.model.Review
 
 class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {

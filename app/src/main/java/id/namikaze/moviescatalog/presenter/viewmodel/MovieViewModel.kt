@@ -1,12 +1,9 @@
 package id.namikaze.moviescatalog.presenter.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.Gson
 import id.namikaze.moviescatalog.data.Resource
-import id.namikaze.moviescatalog.domain.model.Genre
 import id.namikaze.moviescatalog.domain.model.Movie
 import id.namikaze.moviescatalog.domain.usecase.MovieUseCase
 import kotlinx.coroutines.flow.collect
