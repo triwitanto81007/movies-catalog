@@ -3,28 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/genreFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/genreFragment"
         android:name="id.namikaze.moviescatalog.presenter.fragment.GenreFragment"
-        android:label="fragment_home"
+        android:label="fragment_genre"
         tools:layout="@layout/fragment_genre" >
         <action
-            android:id="@+id/action_homeFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_detailRecipesFragment"
-            app:destination="@id/detailRecipesFragment" />
+            android:id="@+id/action_genreFragment_to_moviesFragment"
+            app:destination="@id/moviesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/favoriteFragment"
-        android:name="id.namikaze.moviescatalog.presenter.fragment.FavoriteFragment"
-        android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        android:id="@+id/moviesFragment"
+        android:name="id.namikaze.moviescatalog.presenter.fragment.MoviesFragment"
+        android:label="fragment_movies"
+        tools:layout="@layout/fragment_movies" >
+
+        <argument
+            android:name="withGenres"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="nameGenres"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_moviesFragment_to_genreFragment"
+            app:destination="@id/genreFragment" />
+        <action
+            android:id="@+id/action_moviesFragment_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/detailRecipesFragment"
+        android:id="@+id/detailMovieFragment"
         android:name="id.namikaze.moviescatalog.presenter.fragment.DetailMovieFragment"
-        android:label="fragment_detail_recipes"
-        tools:layout="@layout/fragment_detail_movie" />
+        android:label="fragment_detail_movie"
+        tools:layout="@layout/fragment_detail_movie" >
+
+        <argument
+            android:name="movieId"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_detailMovieFragment_to_moviesFragment"
+            app:destination="@id/moviesFragment" />
+    </fragment>
 </navigation>

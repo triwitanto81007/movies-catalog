@@ -13,7 +13,6 @@ data class GenreEntity (
   @ColumnInfo(name = "id")
   var id : Int? = null,
 
-  @NonNull
   @ColumnInfo(name = "name")
   var name : String? = null
 

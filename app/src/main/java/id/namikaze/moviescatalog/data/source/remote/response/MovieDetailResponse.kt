@@ -7,7 +7,6 @@ data class MovieDetailResponse (
 
   @SerializedName("adult"                 ) var adult               : Boolean?                       = null,
   @SerializedName("backdrop_path"         ) var backdropPath        : String?                        = null,
-  @SerializedName("belongs_to_collection" ) var belongsToCollection : String?                        = null,
   @SerializedName("budget"                ) var budget              : Int?                           = null,
   @SerializedName("genres"                ) var genres              : ArrayList<GenreResponse>              = arrayListOf(),
   @SerializedName("homepage"              ) var homepage            : String?                        = null,

@@ -7,25 +7,38 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/fragment_detail_movie">
 
-    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-        android:id="@+id/yp_trailer_movie_detail"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/iv_size_background_movie_detail"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:showYouTubeButton="false"
-        app:showFullScreenButton="false"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_default_image"
+        android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_background_movie_detail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@id/iv_size_background_movie_detail"
+        app:layout_constraintEnd_toEndOf="@id/iv_size_background_movie_detail"
+        app:layout_constraintStart_toStartOf="@id/iv_size_background_movie_detail"
+        app:layout_constraintTop_toTopOf="@id/iv_size_background_movie_detail" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_cover_movie_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardCornerRadius="@dimen/general_card_view_radius"
         app:cardElevation="@dimen/match_constraint"
         android:layout_margin="@dimen/general_parent_margin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yp_trailer_movie_detail">
+        app:layout_constraintTop_toBottomOf="@+id/iv_background_movie_detail">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -67,7 +80,6 @@
         android:layout_marginEnd="@dimen/general_parent_margin"
         android:textSize="@dimen/size_text_title1"
         android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cv_cover_movie_detail"
         app:layout_constraintTop_toTopOf="@+id/cv_cover_movie_detail"
@@ -81,7 +93,6 @@
         android:layout_marginStart="@dimen/general_parent_margin"
         android:layout_marginEnd="@dimen/general_parent_margin"
         android:textSize="@dimen/size_text_default"
-        android:textColor="@color/black"
         android:fontFamily="@font/roboto_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cv_cover_movie_detail"
@@ -96,19 +107,11 @@
         android:layout_marginStart="@dimen/general_parent_margin"
         android:layout_marginEnd="@dimen/general_parent_margin"
         android:textSize="@dimen/size_text_small"
-        android:textColor="@color/black"
         android:fontFamily="@font/roboto_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cv_cover_movie_detail"
         app:layout_constraintTop_toBottomOf="@+id/tv_rating_movie_detail"
         tools:text="On a post-apocalyptic Earth, a robot, built to protect the life of his dying creator's beloved dog, learns about life, love, friendship, and what it means to be human. "/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/general_line_view_size"
-        android:background="@color/gray_line"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

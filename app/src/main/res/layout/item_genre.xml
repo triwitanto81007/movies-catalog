@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="@dimen/general_parent_margin_horizontal"
+    android:layout_marginHorizontal="@dimen/general_parent_padding"
     android:layout_marginVertical="@dimen/general_parent_padding"
     app:cardCornerRadius="@dimen/general_card_view_radius"
     app:cardElevation="@dimen/general_card_view_elevation">
@@ -37,7 +37,6 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/general_parent_margin"
             android:textSize="@dimen/size_text_title3"
-            android:textColor="@color/black_text"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

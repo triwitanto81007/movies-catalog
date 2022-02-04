@@ -17,10 +17,15 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "BASE_URL", "\"https://masak-apa.tomorisakura.vercel.app/\""
-        buildConfigField "String", "API_PATH", "\"api/\""
+        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/\""
+        buildConfigField "String", "API_PATH", "\"3/\""
         buildConfigField "String", "ENCRYPT_PASSWORD", "\"your_password\""
-        buildConfigField "String", "DATABSE_NAME", "\"Recipe.db\""
+        buildConfigField "String", "DATABSE_NAME", "\"Movie.db\""
+        buildConfigField "String", "DATABSE_NAME", "\"Movie.db\""
+        buildConfigField "String", "API_KEY", apiKey
+        buildConfigField "String", "IMAGE_URL", "\"https://image.tmdb.org/t/p/w185\""
+        buildConfigField "String", "IMAGE_BG_URL", "\"https://image.tmdb.org/t/p/w500\""
+
 
     }
 

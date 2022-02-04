@@ -9,8 +9,6 @@
         android:id="@+id/v_review"
         android:layout_width="match_parent"
         android:layout_height="@dimen/general_line_view_size"
-        android:layout_marginTop="@dimen/general_parent_margin"
-        android:background="@color/gray_line"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -24,7 +22,6 @@
         android:paddingEnd="@dimen/general_parent_margin"
         android:textSize="@dimen/size_text_title1"
         android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/black"
         android:text="@string/text_review"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

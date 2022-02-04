@@ -1,12 +1,23 @@
 package id.namikaze.moviescatalog.data.source.remote.network
 
+import id.namikaze.moviescatalog.data.source.remote.response.*
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
-    @GET("recipes")
-    suspend fun getRecipesList(): BaseResponse<List<RecipeResponse>>
+    @GET("genre/movie/list")
+    suspend fun getGenreList(@Query("api_key") apiKey: String): GenresResponse
 
-    @GET("recipe/{key}")
-    suspend fun getRecipesDetail(@Path("key") key: String): BaseResponse<DetailRecipeResponse>
+    @GET("discover/movie")
+    suspend fun getMovieList(@Query("api_key") apiKey: String, @Query("with_genres") withGenres: String): MoviesResponse
+
+    @GET("movie/{id_movie}")
+    suspend fun getMovieDetail( @Path("id_movie") idMovie: String, @Query("api_key") apiKey: String): MovieDetailResponse
+
+    @GET("movie/{id_movie}/reviews")
+    suspend fun getReview(@Path("id_movie") idMovie: String, @Query("api_key") apiKey: String): ReviewsResponse
+
+    @GET("movie/{id_movie}/videos")
+    suspend fun getTrailer(@Path("id_movie") idMovie: String, @Query("api_key") apiKey: String): TrailersResponse
 }

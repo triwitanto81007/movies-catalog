@@ -2,15 +2,14 @@ package id.namikaze.moviescatalog.di
 
 import androidx.room.Room
 import id.namikaze.moviescatalog.BuildConfig
-import id.namikaze.moviescatalog.data.RecipeRepository
-import id.namikaze.moviescatalog.data.source.local.IRecipeLocalSource
-import id.namikaze.moviescatalog.data.source.local.RecipeLocalDataSource
-import id.namikaze.moviescatalog.data.source.local.room.RecipeDatabase
-import id.namikaze.moviescatalog.data.source.remote.IRecipeRemoteSource
-import id.namikaze.moviescatalog.data.source.remote.RecipeRemoteDataSource
+import id.namikaze.moviescatalog.data.MovieRepository
+import id.namikaze.moviescatalog.data.source.local.IMovieLocalSource
+import id.namikaze.moviescatalog.data.source.local.MovieLocalDataSource
+import id.namikaze.moviescatalog.data.source.local.room.MovieDatabase
+import id.namikaze.moviescatalog.data.source.remote.IMovieRemoteSource
+import id.namikaze.moviescatalog.data.source.remote.MovieRemoteDataSource
 import id.namikaze.moviescatalog.data.source.remote.network.ApiService
-import id.namikaze.moviescatalog.domain.repository.IRecipeRepository
-import id.namikaze.moviescatalog.utlis.AppExecutors
+import id.namikaze.moviescatalog.domain.repository.IMovieRepository
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
@@ -22,13 +21,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val databaseModule = module {
-    factory { get<RecipeDatabase>().recipeDao() }
+    factory { get<MovieDatabase>().movieDao() }
     single {
         val passphrase: ByteArray = SQLiteDatabase.getBytes(BuildConfig.ENCRYPT_PASSWORD.toCharArray())
         val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
-            RecipeDatabase::class.java, BuildConfig.DATABSE_NAME
+            MovieDatabase::class.java, BuildConfig.DATABSE_NAME
         ).fallbackToDestructiveMigration()
             .openHelperFactory(factory)
             .build()
@@ -54,21 +53,20 @@ val networkModule = module {
 }
 
 val localDataSourceModule = module {
-    single<IRecipeLocalSource> {
-        RecipeLocalDataSource(get())
+    single<IMovieLocalSource> {
+        MovieLocalDataSource(get())
     }
 }
 val remoteDataSourceModule = module {
-    single<IRecipeRemoteSource> {
-        RecipeRemoteDataSource(get())
+    single<IMovieRemoteSource> {
+        MovieRemoteDataSource(get())
     }
 }
 
 val repositoryModule = module {
-    single { RecipeLocalDataSource(get()) }
-    single { RecipeRemoteDataSource(get()) }
-    factory { AppExecutors() }
-    single<IRecipeRepository> {
-        RecipeRepository(get(), get(), get())
+    single { MovieLocalDataSource(get()) }
+    single { MovieRemoteDataSource(get()) }
+    single<IMovieRepository> {
+        MovieRepository(get(), get())
     }
 }

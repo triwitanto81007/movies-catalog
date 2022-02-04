@@ -1,15 +1,21 @@
 package id.namikaze.moviescatalog.di
 
-import id.namikaze.moviescatalog.domain.usecase.RecipeInteractor
-import id.namikaze.moviescatalog.domain.usecase.RecipeUseCase
-import id.namikaze.moviescatalog.presenter.viewmodel.HomeViewModel
+import id.namikaze.moviescatalog.domain.usecase.MovieInteractor
+import id.namikaze.moviescatalog.domain.usecase.MovieUseCase
+import id.namikaze.moviescatalog.presenter.fragment.DetailMovieFragment
+import id.namikaze.moviescatalog.presenter.viewmodel.DetailMovieViewModel
+import id.namikaze.moviescatalog.presenter.viewmodel.GenreViewModel
+import id.namikaze.moviescatalog.presenter.viewmodel.MovieViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    factory<RecipeUseCase> { RecipeInteractor(get()) }
+    factory<MovieUseCase> { MovieInteractor(get()) }
 }
 
 val viewModelModule =  module {
-    viewModel { HomeViewModel(get()) }
+    viewModel { GenreViewModel(get()) }
+    viewModel { MovieViewModel(get()) }
+    viewModel { DetailMovieViewModel(get()) }
+
 }

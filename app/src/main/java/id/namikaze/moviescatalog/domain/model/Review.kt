@@ -10,7 +10,8 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Review (
 
-  var id : String? = null,
+  var id : Int? = null,
+  var idAuthor : String? = null,
   var author : String? = null,
   var username : String? = null,
   var avatarPath : String? = null,

@@ -13,7 +13,6 @@ data class MovieDetail (
   var id : Int? = null,
   var adult : Boolean? = null,
   var backdropPath : String?  = null,
-  var belongsToCollection : String? = null,
   var budget : Int? = null,
   var homepage : String? = null,
   var imdbId : String? = null,
