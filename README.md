@@ -8,4 +8,6 @@
 6. Implement endless scrolling on list of movies and users review.  
 7. Cover positive and negative cases.
 
-![alt text](https://ibb.co/WVrBsnz)
+<img src="https://i.ibb.co/ySfzMYb/photo-2022-02-04-10-57-14-2.jpg" width="25%" height="25%"> <img src="https://i.ibb.co/S3w6sdg/photo-2022-02-04-10-57-15.jpg" width="25%" height="25%">  <img src="https://i.ibb.co/CPjVWB9/photo-2022-02-04-10-57-14.jpg" width="25%" height="25%">
+
+
