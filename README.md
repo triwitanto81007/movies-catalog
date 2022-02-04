@@ -7,3 +7,5 @@
 5. Show the youtube trailer of the movie.  
 6. Implement endless scrolling on list of movies and users review.  
 7. Cover positive and negative cases.
+
+![alt text](https://ibb.co/WVrBsnz)
