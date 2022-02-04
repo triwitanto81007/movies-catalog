@@ -35,10 +35,10 @@ class MovieRepository(
         }.asFlow()
     }
 
-    override fun getMovieList(apiKey: String, withGenres: Int): Flow<Resource<List<Movie>>> {
+    override fun getMovieList(apiKey: String, withGenres: Int, page: String, limit: Int, offset: Int): Flow<Resource<List<Movie>>> {
         return object: NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> {
-                return movieLocalDataSource.getMovieList(withGenres.toString()).map {
+                return movieLocalDataSource.getMovieList(withGenres.toString(), limit, offset).map {
                     DataMapper.MoviesMapper.mapEntitiesToDomain(it)
                 }
             }
@@ -46,7 +46,7 @@ class MovieRepository(
             override fun shouldFetch(data: List<Movie>?): Boolean  = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
-                movieRemoteDataSource.getMovieList(apiKey, withGenres.toString())
+                movieRemoteDataSource.getMovieList(apiKey, withGenres.toString(), page)
 
             override suspend fun saveCallResult(data: List<MovieResponse>) {
                 movieLocalDataSource.insertMovieList(
@@ -77,10 +77,10 @@ class MovieRepository(
         }.asFlow()
     }
 
-    override fun getReview(apiKey: String, idMovie: Int): Flow<Resource<List<Review>>> {
+    override fun getReview(apiKey: String, idMovie: Int, page: String, limit: Int, offset: Int): Flow<Resource<List<Review>>> {
         return object: NetworkBoundResource<List<Review>, ReviewsResponse>() {
             override fun loadFromDB(): Flow<List<Review>> {
-                return movieLocalDataSource.getReview(idMovie).map {
+                return movieLocalDataSource.getReview(idMovie, limit, offset).map {
                     DataMapper.ReviewMapper.mapEntitiesToDomain(it)
                 }
             }
@@ -88,7 +88,7 @@ class MovieRepository(
             override fun shouldFetch(data: List<Review>?): Boolean  = true
 
             override suspend fun createCall(): Flow<ApiResponse<ReviewsResponse>> =
-                movieRemoteDataSource.getReview(apiKey, idMovie.toString())
+                movieRemoteDataSource.getReview(apiKey, idMovie.toString(), page)
 
             override suspend fun saveCallResult(data: ReviewsResponse) {
                 movieLocalDataSource.insertReview(
@@ -112,9 +112,11 @@ class MovieRepository(
                 movieRemoteDataSource.getTrailer(apiKey, idMovie.toString())
 
             override suspend fun saveCallResult(data: TrailersResponse) {
-                movieLocalDataSource.insertTrailer(
-                    DataMapper.TrailerMapper.mapResponsesToEntities(data)
-                )
+                if (data.results.size != 0){
+                    movieLocalDataSource.insertTrailer(
+                        DataMapper.TrailerMapper.mapResponsesToEntities(data)
+                    )
+                }
             }
         }.asFlow()
     }

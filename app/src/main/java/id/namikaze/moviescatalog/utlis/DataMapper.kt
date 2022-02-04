@@ -1,6 +1,7 @@
 package id.namikaze.moviescatalog.utlis
 
 import id.namikaze.moviescatalog.data.source.local.entity.*
+import id.namikaze.moviescatalog.data.source.remote.network.ApiResponse
 import id.namikaze.moviescatalog.data.source.remote.response.*
 import id.namikaze.moviescatalog.domain.model.*
 

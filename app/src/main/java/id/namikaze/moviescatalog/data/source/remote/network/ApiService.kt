@@ -10,13 +10,13 @@ interface ApiService {
     suspend fun getGenreList(@Query("api_key") apiKey: String): GenresResponse
 
     @GET("discover/movie")
-    suspend fun getMovieList(@Query("api_key") apiKey: String, @Query("with_genres") withGenres: String): MoviesResponse
+    suspend fun getMovieList(@Query("api_key") apiKey: String, @Query("with_genres") withGenres: String, @Query("page") page: String): MoviesResponse
 
     @GET("movie/{id_movie}")
     suspend fun getMovieDetail( @Path("id_movie") idMovie: String, @Query("api_key") apiKey: String): MovieDetailResponse
 
     @GET("movie/{id_movie}/reviews")
-    suspend fun getReview(@Path("id_movie") idMovie: String, @Query("api_key") apiKey: String): ReviewsResponse
+    suspend fun getReview(@Path("id_movie") idMovie: String, @Query("api_key") apiKey: String, @Query("page") page: String): ReviewsResponse
 
     @GET("movie/{id_movie}/videos")
     suspend fun getTrailer(@Path("id_movie") idMovie: String, @Query("api_key") apiKey: String): TrailersResponse

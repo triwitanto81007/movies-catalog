@@ -7,11 +7,11 @@ interface IMovieLocalSource {
 
     fun getGenreList(): Flow<List<GenreEntity>>
 
-    fun getMovieList(genreId: String): Flow<List<MovieEntity>>
+    fun getMovieList(genreId: String, limit: Int, offset: Int ): Flow<List<MovieEntity>>
 
     fun getMovieDetail(id: Int): Flow<MovieDetailEntity>
 
-    fun getReview(id: Int): Flow<List<ReviewEntity>>
+    fun getReview(id: Int, limit: Int, offset: Int): Flow<List<ReviewEntity>>
 
     fun getTrailer(id: Int): Flow<TrailerEntity>
 

@@ -7,11 +7,11 @@ import kotlinx.coroutines.flow.Flow
 interface IMovieRemoteSource {
     fun getGenreList(apiKey: String): Flow<ApiResponse<List<GenreResponse>>>
 
-    fun getMovieList(apiKey: String, withGenres: String): Flow<ApiResponse<List<MovieResponse>>>
+    fun getMovieList(apiKey: String, withGenres: String, page: String): Flow<ApiResponse<List<MovieResponse>>>
 
     fun getMovieDetail(apiKey: String, idMovie: String): Flow<ApiResponse<MovieDetailResponse>>
 
-    fun getReview(apiKey: String, idMovie: String): Flow<ApiResponse<ReviewsResponse>>
+    fun getReview(apiKey: String, idMovie: String, page: String): Flow<ApiResponse<ReviewsResponse>>
 
     fun getTrailer(apiKey: String, idMovie: String): Flow<ApiResponse<TrailersResponse>>
 

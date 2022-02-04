@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.NonNull
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -34,6 +35,13 @@ class DetailMovieFragment : Fragment() {
     private val viewModel: DetailMovieViewModel by viewModel()
 
     private val args: DetailMovieFragmentArgs by navArgs()
+
+    private var isLoadMore = false
+    private var isLoading = false
+    private var pageNumber = 1
+    private var offset = 0
+    private var limit = 20
+    private var counter = 20
 
     private val recyclerViewAdapter by lazy {
         ReviewAdapter()
@@ -80,11 +88,13 @@ class DetailMovieFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     it.getSuccessStateIfNotHandled()?.let { data ->
+                        binding.pbLoadmoreMovieDetail.visibility = View.GONE
                         setupReview(data)
                     }
                 }
                 is Resource.Error -> {
                     it.getErrorStateIfNotHandled()?.let {
+                        binding.pbLoadmoreMovieDetail.visibility = View.GONE
                     }
                 }
             }
@@ -114,7 +124,7 @@ class DetailMovieFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getReview(BuildConfig.API_KEY, args.movieId.toInt())
+            viewModel.getReview(BuildConfig.API_KEY, args.movieId.toInt(), pageNumber.toString(), limit, offset)
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -129,11 +139,42 @@ class DetailMovieFragment : Fragment() {
             contentHeader.tvTitleNameMovieDetail.text = data.title
             contentHeader.tvRatingMovieDetail.text = "${data.voteAverage}/10"
             contentHeader.tvOverviewMovieDetail.text = data.overview
+
+            nsvMoviesDetail.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
+                if (scrollY == (v!!.getChildAt(0).measuredHeight - v.measuredHeight)) {
+                    if (!isLoading) {
+                        isLoading = true
+                        pageNumber += 1
+                        offset += counter
+
+                        pbLoadmoreMovieDetail.visibility = View.VISIBLE
+                        viewLifecycleOwner.lifecycleScope.launch {
+                            viewModel.getReview(BuildConfig.API_KEY, args.movieId.toInt(), pageNumber.toString(), limit, offset)
+                        }
+                    }
+                }
+            })
         }
     }
 
     private fun setupReview(data: List<Review>) {
-        recyclerViewAdapter.setData(data)
+        if (!isLoadMore){
+            if (!data.isNullOrEmpty()){
+                recyclerViewAdapter.setData(data, false)
+                isLoadMore = true
+            }else {
+                binding.contentReview.rvReviewMovieDetail.visibility = View.GONE
+            }
+        }else{
+            if (isLoading) {
+                isLoading = if (data.isNullOrEmpty()){
+                    true
+                }else{
+                    recyclerViewAdapter.setData(data, true)
+                    false
+                }
+            }
+        }
     }
 
     private fun setupTrailer(data: Trailer) {

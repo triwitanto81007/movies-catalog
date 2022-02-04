@@ -25,10 +25,10 @@ class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSo
         }.flowOn(Dispatchers.IO)
     }
 
-    override fun getMovieList(apiKey: String, withGenres: String): Flow<ApiResponse<List<MovieResponse>>> {
+    override fun getMovieList(apiKey: String, withGenres: String, page: String): Flow<ApiResponse<List<MovieResponse>>> {
         return flow {
             try {
-                val response = apiService.getMovieList(apiKey, withGenres)
+                val response = apiService.getMovieList(apiKey, withGenres, page)
                 if (response.results.isNotEmpty()){
                     emit(ApiResponse.Success(response.results))
                 } else {
@@ -53,10 +53,10 @@ class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSo
         }.flowOn(Dispatchers.IO)
     }
 
-    override fun getReview(apiKey: String, idMovie: String): Flow<ApiResponse<ReviewsResponse>> {
+    override fun getReview(apiKey: String, idMovie: String, page: String): Flow<ApiResponse<ReviewsResponse>> {
         return flow {
             try {
-                val response = apiService.getReview(idMovie, apiKey)
+                val response = apiService.getReview(idMovie, apiKey, page)
                 emit(ApiResponse.Success(response))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))

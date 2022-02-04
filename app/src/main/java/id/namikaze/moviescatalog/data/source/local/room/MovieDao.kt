@@ -12,14 +12,14 @@ interface MovieDao {
     @Query("SELECT * FROM genres")
     fun getGenreList(): Flow<List<GenreEntity>>
 
-    @Query("SELECT * FROM movies  WHERE genre_ids LIKE '%' || :genreId || '%'")
-    fun getMovieList(genreId: String): Flow<List<MovieEntity>>
+    @Query("SELECT * FROM movies  WHERE genre_ids LIKE '%' || :genreId || '%' LIMIT :limit OFFSET :offset")
+    fun getMovieList(genreId: String, limit: Int, offset: Int): Flow<List<MovieEntity>>
 
     @Query("SELECT * FROM movie WHERE id = :id")
     fun getMovieDetail(id: Int): Flow<MovieDetailEntity>
 
-    @Query("SELECT * FROM review WHERE id = :id")
-    fun getReview(id: Int): Flow<List<ReviewEntity>>
+    @Query("SELECT * FROM review WHERE id = :id LIMIT :limit OFFSET :offset")
+    fun getReview(id: Int, limit: Int, offset: Int): Flow<List<ReviewEntity>>
 
     @Query("SELECT * FROM trailer WHERE id = :id")
     fun getTrailer(id: Int): Flow<TrailerEntity>

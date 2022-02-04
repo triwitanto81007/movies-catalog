@@ -27,8 +27,8 @@ class DetailMovieViewModel(private val movieUseCase: MovieUseCase) : ViewModel()
         }
     }
 
-    suspend fun getReview(apiKey: String, idMovie: Int) {
-        movieUseCase.getReview(apiKey, idMovie).collect{
+    suspend fun getReview(apiKey: String, idMovie: Int, page: String, limit: Int, offset: Int) {
+        movieUseCase.getReview(apiKey, idMovie, page, limit, offset).collect{
             _review.postValue(it)
         }
     }

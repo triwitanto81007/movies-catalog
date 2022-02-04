@@ -41,9 +41,11 @@ class MovieAdapter(val onItemClick: ((String) -> Unit)? = null) : RecyclerView.A
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(newListData: List<Movie>?) {
+    fun setData(newListData: List<Movie>?, isLoadMore: Boolean) {
         if (newListData == null) return
-        listData.clear()
+        if (!isLoadMore) {
+            listData.clear()
+        }
         listData.addAll(newListData)
         notifyDataSetChanged()
     }

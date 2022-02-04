@@ -13,8 +13,8 @@ class MovieViewModel(private val movieUseCase: MovieUseCase) : ViewModel() {
     private var _movie = MutableLiveData<Resource<List<Movie>>>()
     val movie: LiveData<Resource<List<Movie>>> = _movie
 
-    suspend fun getMovieList(apiKey: String, withGenres: Int) {
-        movieUseCase.getMovieList(apiKey, withGenres).collect{
+    suspend fun getMovieList(apiKey: String, withGenres: Int, page: String, limit: Int, offset: Int) {
+        movieUseCase.getMovieList(apiKey, withGenres, page, limit, offset).collect{
             _movie.postValue(it)
         }
     }
