@@ -37,7 +37,7 @@ class MoviesFragment : Fragment() {
     private var counter = 20
 
     private val recyclerViewAdapter by lazy {
-        MovieAdapter(::navigateToLeagueDetail)
+        MovieAdapter(::navigateToMovieeDetail)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -122,18 +122,18 @@ class MoviesFragment : Fragment() {
 
     private fun setupRecyclerView() = with(binding.rvMovies) {
         setHasFixedSize(true)
-        layoutManager = GridLayoutManager(context, SPAN_COUNT_LEAGUE_ITEM)
+        layoutManager = GridLayoutManager(context, SPAN_COUNT_MOVIE_ITEM)
         adapter = recyclerViewAdapter
     }
 
-    private fun navigateToLeagueDetail(movieId: String) {
+    private fun navigateToMovieeDetail(movieId: String) {
         super.getView()?.findNavController()?.navigate(
             MoviesFragmentDirections.actionMoviesFragmentToDetailMovieFragment(movieId)
         )
     }
 
     companion object {
-        const val SPAN_COUNT_LEAGUE_ITEM = 3
+        const val SPAN_COUNT_MOVIE_ITEM = 3
     }
 
 }

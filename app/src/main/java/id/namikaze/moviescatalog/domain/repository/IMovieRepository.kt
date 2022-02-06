@@ -10,7 +10,6 @@ interface IMovieRepository {
 
     fun getMovieList(apiKey: String, withGenres: Int, page: String, limit: Int, offset: Int): Flow<Resource<List<Movie>>>
 
-
     fun getMovieDetail(apiKey: String, idMovie: Int): Flow<Resource<MovieDetail>>
 
     fun getReview(apiKey: String, idMovie: Int, page: String, limit: Int, offset: Int): Flow<Resource<List<Review>>>

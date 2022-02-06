@@ -14,6 +14,7 @@ class GenreViewModel(private val movieUseCase: MovieUseCase) : ViewModel() {
     val genre: LiveData<Resource<List<Genre>>> = _genre
 
     suspend fun getGenreList(apiKey: String) {
+        //collect -> terminal operator (operator terakhir) untuk mengambil hasil akhir data
         movieUseCase.getGenreList(apiKey).collect{
             _genre.postValue(it)
         }

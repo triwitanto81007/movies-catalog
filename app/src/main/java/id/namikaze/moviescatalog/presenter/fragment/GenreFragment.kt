@@ -24,7 +24,7 @@ class GenreFragment : Fragment() {
     private val viewModel: GenreViewModel by viewModel()
 
     private val recyclerViewAdapter by lazy {
-        GenreAdapter(::navigateToLeagueDetail)
+        GenreAdapter(::navigateToMovieList)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -37,6 +37,7 @@ class GenreFragment : Fragment() {
 
         setupRecyclerView()
 
+        //pada fragment jika menggunakan this saat misal rotasi layar tidak benar" kedistory, akhibatnya akan tercipta lagi observe baru, sedangkan yang lama belum terhapus
         viewModel.genre.observe(viewLifecycleOwner, {
             when (it) {
                is Resource.Loading -> {
@@ -63,17 +64,17 @@ class GenreFragment : Fragment() {
 
     private fun setupRecyclerView() = with(binding.rvGenreMovies) {
         setHasFixedSize(true)
-        layoutManager = GridLayoutManager(context, SPAN_COUNT_LEAGUE_ITEM)
+        layoutManager = GridLayoutManager(context, SPAN_COUNT_GENRE_ITEM)
         adapter = recyclerViewAdapter
     }
 
-    private fun navigateToLeagueDetail(withGenres: String, nameGenres: String) {
+    private fun navigateToMovieList(withGenres: String, nameGenres: String) {
         super.getView()?.findNavController()?.navigate(
             GenreFragmentDirections.actionGenreFragmentToMoviesFragment(withGenres, nameGenres)
         )
     }
 
     companion object {
-        const val SPAN_COUNT_LEAGUE_ITEM = 2
+        const val SPAN_COUNT_GENRE_ITEM = 2
     }
 }

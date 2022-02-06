@@ -8,17 +8,17 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
     private var result: Flow<Resource<ResultType>> = flow {
         emit(Resource.Loading())
         val dbSource = loadFromDB().first()
-        if (shouldFetch(dbSource)) {
+        if (shouldFetch(dbSource)) { //cek perlu ambil data dari network atau tidak
             emit(Resource.Loading())
-            when (val apiResponse = createCall().first()) {
+            when (val apiResponse = createCall().first()) { //ambil data dari network
                 is ApiResponse.Success -> {
-                    saveCallResult(apiResponse.data)
-                    emitAll(loadFromDB().map {
+                    saveCallResult(apiResponse.data) //menyimpan data network ke db
+                    emitAll(loadFromDB().map { //ambil data dari DB
                         Resource.Success(it)
                     })
                 }
                 is ApiResponse.Empty -> {
-                    emitAll(loadFromDB().map {
+                    emitAll(loadFromDB().map { //ambil data dari DB
                         Resource.Success(it)
                     })
                 }
@@ -27,7 +27,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                 }
             }
         } else {
-            emitAll(loadFromDB().map { Resource.Success(it) })
+            emitAll(loadFromDB().map { Resource.Success(it) }) //ambil data dari DB
         }
     }
 

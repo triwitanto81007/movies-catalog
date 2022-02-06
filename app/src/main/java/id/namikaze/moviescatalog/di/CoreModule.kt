@@ -21,7 +21,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val databaseModule = module {
-    factory { get<MovieDatabase>().movieDao() }
+    //lamda factory -> setiap kali dibutuhkan akan membuat instance baru
+    factory {
+        get<MovieDatabase>().movieDao()
+    }
+    //lamda single -> membuat object selalu hidup selama aplikasi berjalan (singleton)
     single {
         val passphrase: ByteArray = SQLiteDatabase.getBytes(BuildConfig.ENCRYPT_PASSWORD.toCharArray())
         val factory = SupportFactory(passphrase)

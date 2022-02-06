@@ -10,10 +10,13 @@ import kotlinx.coroutines.flow.flowOn
 
 class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSource {
     override fun getGenreList(apiKey: String): Flow<ApiResponse<List<GenreResponse>>> {
+        //flow -> adalah builder untuk membuat Flow
         return flow {
             try {
                 val response = apiService.getGenreList(apiKey)
+
                 if (response.genres.isNotEmpty()){
+                    // emit -> operator untuk mengirimkan value ke dalam Flow
                     emit(ApiResponse.Success(response.genres))
                 } else {
                     emit(ApiResponse.Empty)
@@ -22,7 +25,7 @@ class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSo
                 emit(ApiResponse.Error(e.toString()))
                 e.printStackTrace()
             }
-        }.flowOn(Dispatchers.IO)
+        }.flowOn(Dispatchers.IO) //mendefinisikan proses mengirim data dilakukan di mana
     }
 
     override fun getMovieList(apiKey: String, withGenres: String, page: String): Flow<ApiResponse<List<MovieResponse>>> {
