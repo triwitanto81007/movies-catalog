@@ -10,9 +10,9 @@ import org.koin.core.logger.Level
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        //digunakan untuk mendaftarkan modul modul yang ada didalamnya,supaya bisa menggunakan Koin di semua kelas
+        //mendaftarkan modul modul yang ada didalamnya
         startKoin {
-            androidLogger(Level.NONE)
+//            androidLogger(Level.NONE)
             //dengan androidContext semua fungsi di dalam module yang membutuhkan context sudah otomatis tercover.
             androidContext(this@MyApplication)
             modules(

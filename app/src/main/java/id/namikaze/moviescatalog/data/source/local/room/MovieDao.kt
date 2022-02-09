@@ -24,18 +24,19 @@ interface MovieDao {
     @Query("SELECT * FROM trailer WHERE id = :id")
     fun getTrailer(id: Int): Flow<TrailerEntity>
 
+    //suspend function -> dilakukan secara asynchronous
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertGenreList(data: List<GenreEntity>)
+    suspend fun insertGenreList(data: List<GenreEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovieList(data: List<MovieEntity>)
+    suspend fun insertMovieList(data: List<MovieEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovieDetail(data: MovieDetailEntity)
+    suspend fun insertMovieDetail(data: MovieDetailEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertReview(data: List<ReviewEntity>)
+    suspend fun insertReview(data: List<ReviewEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTrailer(data: TrailerEntity)
+    suspend fun insertTrailer(data: TrailerEntity)
 }

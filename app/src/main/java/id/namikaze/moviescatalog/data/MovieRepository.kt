@@ -22,7 +22,7 @@ class MovieRepository(
                 }
             }
 
-            override fun shouldFetch(data: List<Genre>?): Boolean  = true
+            override fun shouldFetch(data: List<Genre>?): Boolean = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<GenreResponse>>> =
                 movieRemoteDataSource.getGenreList(apiKey)

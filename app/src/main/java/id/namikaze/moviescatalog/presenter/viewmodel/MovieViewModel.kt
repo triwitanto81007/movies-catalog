@@ -15,7 +15,6 @@ class MovieViewModel(private val movieUseCase: MovieUseCase) : ViewModel() {
 
     suspend fun getMovieList(apiKey: String, withGenres: Int, page: String, limit: Int, offset: Int) {
         movieUseCase.getMovieList(apiKey, withGenres, page, limit, offset).collect{
-            //postValue -> ketika ingin mengeset data dari background thread
             _movie.postValue(it)
         }
     }

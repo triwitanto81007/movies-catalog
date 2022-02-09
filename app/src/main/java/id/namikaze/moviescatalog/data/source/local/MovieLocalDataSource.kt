@@ -3,6 +3,7 @@ package id.namikaze.moviescatalog.data.source.local
 import id.namikaze.moviescatalog.data.source.local.entity.*
 import id.namikaze.moviescatalog.data.source.local.room.MovieDao
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -18,32 +19,22 @@ class MovieLocalDataSource(private val movieDao: MovieDao): IMovieLocalSource {
     override fun getTrailer(id: Int): Flow<TrailerEntity> = movieDao.getTrailer(id)
 
     override suspend fun insertGenreList(data: List<GenreEntity>) {
-        GlobalScope.launch {
-            movieDao.insertGenreList(data)
-        }
+        movieDao.insertGenreList(data)
     }
 
     override suspend fun insertMovieList(data: List<MovieEntity>) {
-        GlobalScope.launch {
-            movieDao.insertMovieList(data)
-        }
+        movieDao.insertMovieList(data)
     }
 
     override suspend fun insertMovieDetail(data: MovieDetailEntity) {
-        GlobalScope.launch {
-            movieDao.insertMovieDetail(data)
-        }
+        movieDao.insertMovieDetail(data)
     }
 
     override suspend fun insertReview(data: List<ReviewEntity>) {
-        GlobalScope.launch {
-            movieDao.insertReview(data)
-        }
+        movieDao.insertReview(data)
     }
 
     override suspend fun insertTrailer(data: TrailerEntity) {
-        GlobalScope.launch {
-            movieDao.insertTrailer(data)
-        }
+        movieDao.insertTrailer(data)
     }
 }
