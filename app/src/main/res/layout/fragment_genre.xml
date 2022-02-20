@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presenter.fragment.GenreFragment">
+    tools:context=".presentation.fragment.GenreFragment">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_home_movies"

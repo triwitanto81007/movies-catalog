@@ -1,4 +1,4 @@
-package id.namikaze.moviescatalog.presenter.fragment
+package id.namikaze.moviescatalog.presentation.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -25,7 +25,7 @@ import id.namikaze.moviescatalog.databinding.FragmentDetailMovieBinding
 import id.namikaze.moviescatalog.domain.model.MovieDetail
 import id.namikaze.moviescatalog.domain.model.Review
 import id.namikaze.moviescatalog.domain.model.Trailer
-import id.namikaze.moviescatalog.presenter.viewmodel.DetailMovieViewModel
+import id.namikaze.moviescatalog.presentation.viewmodel.DetailMovieViewModel
 import kotlinx.coroutines.launch
 
 class DetailMovieFragment : Fragment() {

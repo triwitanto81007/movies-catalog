@@ -1,4 +1,4 @@
-package id.namikaze.moviescatalog.presenter.fragment
+package id.namikaze.moviescatalog.presentation.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import id.namikaze.moviescatalog.BuildConfig
 import id.namikaze.moviescatalog.adapter.GenreAdapter
 import id.namikaze.moviescatalog.data.Resource
 import id.namikaze.moviescatalog.databinding.FragmentGenreBinding
-import id.namikaze.moviescatalog.presenter.viewmodel.GenreViewModel
+import id.namikaze.moviescatalog.presentation.viewmodel.GenreViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 

@@ -1,4 +1,4 @@
-package id.namikaze.moviescatalog.presenter.viewmodel
+package id.namikaze.moviescatalog.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
