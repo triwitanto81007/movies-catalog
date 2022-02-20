@@ -16,7 +16,6 @@ class GenreViewModel(private val movieUseCase: MovieUseCase) : ViewModel() {
     suspend fun getGenreList(apiKey: String) {
         //collect -> terminal operator (operator terakhir) untuk mengambil hasil akhir data
         movieUseCase.getGenreList(apiKey).collect{
-            //postValue -> mengeset data dari background thread
             _genre.postValue(it)
         }
     }

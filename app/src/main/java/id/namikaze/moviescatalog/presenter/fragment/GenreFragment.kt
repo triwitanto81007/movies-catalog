@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -37,13 +38,11 @@ class GenreFragment : Fragment() {
 
         setupRecyclerView()
 
-        //pada fragment jika menggunakan this saat misal rotasi layar tidak benar" kedistory, akhibatnya akan tercipta lagi observe baru, sedangkan yang lama belum terhapus
+        //mengamati dan menerima data dari livedata
         viewModel.genre.observe(viewLifecycleOwner, {
             when (it) {
                is Resource.Loading -> {
-                   it.getLoadingStateIfNotHandled()?.let {
-
-                   }
+                   it.getLoadingStateIfNotHandled()?.let {}
                }
                 is Resource.Success -> {
                     it.getSuccessStateIfNotHandled()?.let { data ->
@@ -51,12 +50,15 @@ class GenreFragment : Fragment() {
                     }
                 }
                 is Resource.Error -> {
-                    it.getErrorStateIfNotHandled()?.let {
+                    it.getErrorStateIfNotHandled()?.let { data ->
+                        Toast.makeText(requireContext(), data, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         })
 
+        //membuat coroutine baru di lifecycleScope
+        //lifecycleScope menyediakan cara yang tepat untuk otomatis membatalkan operasi yang berjalan lama saat Lifecycle adalah DESTROYED
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getGenreList(BuildConfig.API_KEY)
         }

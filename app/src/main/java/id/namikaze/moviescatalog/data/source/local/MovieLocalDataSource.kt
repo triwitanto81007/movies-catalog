@@ -2,10 +2,7 @@ package id.namikaze.moviescatalog.data.source.local
 
 import id.namikaze.moviescatalog.data.source.local.entity.*
 import id.namikaze.moviescatalog.data.source.local.room.MovieDao
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 class MovieLocalDataSource(private val movieDao: MovieDao): IMovieLocalSource {
     override fun getGenreList(): Flow<List<GenreEntity>> = movieDao.getGenreList()

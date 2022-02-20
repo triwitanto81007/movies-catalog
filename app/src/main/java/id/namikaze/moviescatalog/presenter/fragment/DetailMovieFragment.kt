@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -25,14 +27,13 @@ import id.namikaze.moviescatalog.domain.model.Review
 import id.namikaze.moviescatalog.domain.model.Trailer
 import id.namikaze.moviescatalog.presenter.viewmodel.DetailMovieViewModel
 import kotlinx.coroutines.launch
-import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailMovieFragment : Fragment() {
 
     private var _binding: FragmentDetailMovieBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: DetailMovieViewModel by viewModel()
+    private val viewModel: DetailMovieViewModel by viewModels()
 
     private val args: DetailMovieFragmentArgs by navArgs()
 
@@ -63,9 +64,7 @@ class DetailMovieFragment : Fragment() {
         viewModel.movieDetail.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
-                    it.getLoadingStateIfNotHandled()?.let {
-
-                    }
+                    it.getLoadingStateIfNotHandled()?.let {}
                 }
                 is Resource.Success -> {
                     it.getSuccessStateIfNotHandled()?.let { data ->
@@ -74,7 +73,8 @@ class DetailMovieFragment : Fragment() {
                     }
                 }
                 is Resource.Error -> {
-                    it.getErrorStateIfNotHandled()?.let {
+                    it.getErrorStateIfNotHandled()?.let { data ->
+                        Toast.makeText(requireContext(), data, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -83,8 +83,7 @@ class DetailMovieFragment : Fragment() {
         viewModel.review.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
-                    it.getLoadingStateIfNotHandled()?.let {
-                    }
+                    it.getLoadingStateIfNotHandled()?.let {}
                 }
                 is Resource.Success -> {
                     it.getSuccessStateIfNotHandled()?.let { data ->
@@ -93,8 +92,9 @@ class DetailMovieFragment : Fragment() {
                     }
                 }
                 is Resource.Error -> {
-                    it.getErrorStateIfNotHandled()?.let {
+                    it.getErrorStateIfNotHandled()?.let { data ->
                         binding.pbLoadmoreMovieDetail.visibility = View.GONE
+                        Toast.makeText(requireContext(), data, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -103,9 +103,7 @@ class DetailMovieFragment : Fragment() {
         viewModel.trailer.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
-                    it.getLoadingStateIfNotHandled()?.let {
-
-                    }
+                    it.getLoadingStateIfNotHandled()?.let {}
                 }
                 is Resource.Success -> {
                     it.getSuccessStateIfNotHandled()?.let { data ->
@@ -113,7 +111,8 @@ class DetailMovieFragment : Fragment() {
                     }
                 }
                 is Resource.Error -> {
-                    it.getErrorStateIfNotHandled()?.let {
+                    it.getErrorStateIfNotHandled()?.let { data ->
+                        Toast.makeText(requireContext(), data, Toast.LENGTH_SHORT).show()
                     }
                 }
             }

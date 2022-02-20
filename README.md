@@ -13,8 +13,7 @@
 <img src="https://i.ibb.co/W3cxCpn/photo-2022-02-04-21-32-13.jpg" width="25%" height="25%"> <img src="https://i.ibb.co/fqc71dG/photo-2022-02-04-21-32-14.jpg" width="25%" height="25%">  <img src="https://i.ibb.co/8cw6pcj/photo-2022-02-04-21-32-13-2.jpg" width="25%" height="25%">
 
 1. Architectural Pattern MVVM
-2. Clean Architectural
+2. Clean Architectur
 3. Koin
 4. Coroutine Flow
 5. Navigation
-

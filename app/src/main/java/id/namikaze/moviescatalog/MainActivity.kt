@@ -1,7 +1,7 @@
 package id.namikaze.moviescatalog
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import id.namikaze.moviescatalog.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
