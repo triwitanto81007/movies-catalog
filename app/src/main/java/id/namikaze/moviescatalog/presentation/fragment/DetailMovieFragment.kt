@@ -27,13 +27,14 @@ import id.namikaze.moviescatalog.domain.model.Review
 import id.namikaze.moviescatalog.domain.model.Trailer
 import id.namikaze.moviescatalog.presentation.viewmodel.DetailMovieViewModel
 import kotlinx.coroutines.launch
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailMovieFragment : Fragment() {
 
     private var _binding: FragmentDetailMovieBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: DetailMovieViewModel by viewModels()
+    private val viewModel: DetailMovieViewModel by viewModel()
 
     private val args: DetailMovieFragmentArgs by navArgs()
 

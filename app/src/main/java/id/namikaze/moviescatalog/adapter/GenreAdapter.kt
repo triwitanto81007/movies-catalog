@@ -39,9 +39,10 @@ class GenreAdapter(val onItemClick: ((String, String) -> Unit)? = null) : Recycl
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(newListData: List<Genre>?) {
-        if (newListData == null) return
-        listData.clear()
-        listData.addAll(newListData)
-        notifyDataSetChanged()
+        if (newListData != null)  {
+            listData.clear()
+            listData.addAll(newListData)
+            notifyDataSetChanged()
+        }
     }
 }

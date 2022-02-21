@@ -40,11 +40,12 @@ class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(newListData: List<Review>?, isLoadMore: Boolean) {
-        if (newListData == null) return
-        if (!isLoadMore){
-            listData.clear()
+        if (newListData != null) {
+            if (!isLoadMore){
+                listData.clear()
+            }
+            listData.addAll(newListData)
+            notifyDataSetChanged()
         }
-        listData.addAll(newListData)
-        notifyDataSetChanged()
     }
 }

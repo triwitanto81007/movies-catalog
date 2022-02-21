@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import id.namikaze.moviescatalog.BuildConfig
 import id.namikaze.moviescatalog.adapter.GenreAdapter
 import id.namikaze.moviescatalog.data.Resource
@@ -18,11 +19,13 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class GenreFragment : Fragment() {
 
-    private var _binding: FragmentGenreBinding? = null
-    private val binding get() = _binding!!
+    //membuat non-null type
+    private lateinit var _binding: FragmentGenreBinding
+    private val binding get() = _binding
 
     private val viewModel: GenreViewModel by viewModel()
 
+    //menginisiasi variabel ketika dipanggil
     private val recyclerViewAdapter by lazy {
         GenreAdapter(::navigateToMovieList)
     }
@@ -57,7 +60,7 @@ class GenreFragment : Fragment() {
         })
 
         //membuat coroutine baru di lifecycleScope
-        //lifecycleScope menyediakan cara yang tepat untuk otomatis membatalkan operasi yang berjalan lama saat Lifecycle adalah DESTROYED
+        //lifecycleScope otomatis membatalkan operasi yang berjalan lama saat Lifecycle DESTROYED
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getGenreList(BuildConfig.API_KEY)
         }

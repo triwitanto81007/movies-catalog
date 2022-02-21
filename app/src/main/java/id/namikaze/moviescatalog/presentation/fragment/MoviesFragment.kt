@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import id.namikaze.moviescatalog.BuildConfig
 import id.namikaze.moviescatalog.adapter.MovieAdapter
 import id.namikaze.moviescatalog.data.Resource
