@@ -14,13 +14,8 @@ class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSo
         return flow {
             try {
                 val response = apiService.getGenreList(apiKey)
-
-                if (response.genres.isNotEmpty()){
-                    // emit -> operator untuk mengirimkan value ke dalam Flow
-                    emit(ApiResponse.Success(response.genres))
-                } else {
-                    emit(ApiResponse.Empty)
-                }
+                // emit -> operator untuk mengirimkan value ke dalam Flow
+                emit(ApiResponse.Success(response.genres))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
                 e.printStackTrace()
@@ -32,11 +27,7 @@ class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSo
         return flow {
             try {
                 val response = apiService.getMovieList(apiKey, withGenres, page)
-                if (response.results.isNotEmpty()){
-                    emit(ApiResponse.Success(response.results))
-                } else {
-                    emit(ApiResponse.Empty)
-                }
+                emit(ApiResponse.Success(response.results))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
                 e.printStackTrace()
