@@ -5,15 +5,34 @@ import com.google.gson.annotations.SerializedName
 
 data class TrailerResponse (
 
-  @SerializedName("iso_639_1"    ) var iso6391     : String?  = null,
-  @SerializedName("iso_3166_1"   ) var iso31661    : String?  = null,
-  @SerializedName("name"         ) var name        : String?  = null,
-  @SerializedName("key"          ) var key         : String?  = null,
-  @SerializedName("site"         ) var site        : String?  = null,
-  @SerializedName("size"         ) var size        : Int?     = null,
-  @SerializedName("type"         ) var type        : String?  = null,
-  @SerializedName("official"     ) var official    : Boolean? = null,
-  @SerializedName("published_at" ) var publishedAt : String?  = null,
-  @SerializedName("id"           ) var id          : String?  = null
+  @SerializedName("iso_639_1")
+  val iso6391 : String?,
+
+  @SerializedName("iso_3166_1")
+  val iso31661 : String?,
+
+  @SerializedName("name")
+  val name : String?,
+
+  @SerializedName("key")
+  val key : String?,
+
+  @SerializedName("site")
+  val site : String?,
+
+  @SerializedName("size")
+  val size : Int?,
+
+  @SerializedName("type")
+  val type : String?,
+
+  @SerializedName("official")
+  val official : Boolean?,
+
+  @SerializedName("published_at")
+  val publishedAt : String?,
+
+  @SerializedName("id")
+  val id : String?
 
 )

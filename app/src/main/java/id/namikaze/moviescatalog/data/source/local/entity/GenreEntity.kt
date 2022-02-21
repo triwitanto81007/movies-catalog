@@ -11,9 +11,9 @@ data class GenreEntity (
   @PrimaryKey
   @NonNull
   @ColumnInfo(name = "id")
-  var id : Int? = null,
+  val id : Int,
 
   @ColumnInfo(name = "name")
-  var name : String? = null
+  val name : String?
 
 )

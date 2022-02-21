@@ -11,34 +11,34 @@ data class ReviewEntity (
   @PrimaryKey
   @NonNull
   @ColumnInfo(name = "author_id")
-  var idAuthor : String,
+  val idAuthor : String,
 
   @NonNull
   @ColumnInfo(name = "id")
-  var id : Int? = null,
+  val id : Int?,
 
   @ColumnInfo(name = "author")
-  var author : String? = null,
+  val author : String?,
 
   @ColumnInfo(name = "username")
-  var username : String? = null,
+  val username : String?,
 
   @ColumnInfo(name = "avatar_path")
-  var avatarPath : String? = null,
+  val avatarPath : String?,
 
   @ColumnInfo(name = "rating")
-  var rating : Int? = null,
+  val rating : Int?,
 
   @ColumnInfo(name = "content")
-  var content : String? = null,
+  val content : String?,
 
   @ColumnInfo(name = "created_at")
-  var createdAt : String? = null,
+  val createdAt : String?,
 
   @ColumnInfo(name = "updated_at")
-  var updatedAt : String? = null,
+  val updatedAt : String?,
 
   @ColumnInfo(name = "url")
-  var url : String? = null
+  val url : String?
 
 )

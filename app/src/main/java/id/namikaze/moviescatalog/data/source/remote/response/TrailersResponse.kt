@@ -5,7 +5,10 @@ import com.google.gson.annotations.SerializedName
 
 data class TrailersResponse (
 
-  @SerializedName("id"      ) var id      : Int,
-  @SerializedName("results" ) var results : ArrayList<TrailerResponse> = arrayListOf()
+  @SerializedName("id")
+  val id : Int,
+
+  @SerializedName("results")
+  val results : List<TrailerResponse>
 
 )

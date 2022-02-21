@@ -11,67 +11,39 @@ data class MovieDetailEntity (
   @PrimaryKey
   @NonNull
   @ColumnInfo(name = "id")
-  var id : Int? = null,
+  val id : Int?,
 
   @ColumnInfo(name = "adult")
-  var adult : Boolean? = null,
+  val adult : Boolean?,
 
   @ColumnInfo(name = "backdrop_path")
-  var backdropPath : String?  = null,
-
-  @ColumnInfo(name = "budget")
-  var budget : Int? = null,
-
-  @ColumnInfo(name = "homepage")
-  var homepage : String? = null,
-
-  @ColumnInfo(name = "imdb_id")
-  var imdbId : String? = null,
+  val backdropPath : String?,
 
   @ColumnInfo(name = "original_language")
-  var originalLanguage : String? = null,
+  val originalLanguage : String?,
 
   @ColumnInfo(name = "original_title")
-  var originalTitle : String? = null,
+  val originalTitle : String?,
 
   @ColumnInfo(name = "overview")
-  var overview : String? = null,
-
-  @ColumnInfo(name = "popularity")
-  var popularity : Double? = null,
+  val overview : String?,
 
   @ColumnInfo(name = "poster_path")
-  var posterPath : String? = null,
+  val posterPath : String?,
 
   @ColumnInfo(name = "release_date")
-  var releaseDate : String? = null,
-
-  @ColumnInfo(name = "revenue")
-  var revenue : Int? = null,
-
-  @ColumnInfo(name = "runtime")
-  var runtime : Int? = null,
-
-  @ColumnInfo(name = "status")
-  var status : String? = null,
-
-  @ColumnInfo(name = "tagline")
-  var tagline : String? = null,
+  val releaseDate : String?,
 
   @ColumnInfo(name = "title")
-  var title: String? = null,
+  val title: String?,
 
   @ColumnInfo(name = "video")
-  var video: Boolean? = null,
+  val video: Boolean?,
 
   @ColumnInfo(name = "vote_average")
-  var voteAverage : Double? = null,
+  val voteAverage : Double?,
 
   @ColumnInfo(name = "vote_count")
-  var voteCount : Int? = null
-
-//  @SerializedName("genres"                ) var genres              : ArrayList<GenreResponse>              = arrayListOf(),
-//  @SerializedName("spoken_languages"      ) var spokenLanguages     : ArrayList<SpokenLanguages>     = arrayListOf(),
-
+  val voteCount : Int?
 
 )

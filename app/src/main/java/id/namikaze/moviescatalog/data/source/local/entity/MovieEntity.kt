@@ -11,46 +11,46 @@ data class MovieEntity (
   @PrimaryKey
   @NonNull
   @ColumnInfo(name = "id")
-  var id : Int? = null,
+  val id : Int,
 
   @ColumnInfo(name = "adult")
-  var adult : Boolean? = null,
+  val adult : Boolean?,
 
   @ColumnInfo(name = "backdrop_path")
-  var backdropPath : String? = null,
+  val backdropPath : String?,
 
   @NonNull
   @ColumnInfo(name = "genre_ids")
-  var genreIds : String? = null,
+  val genreIds : String,
 
   @ColumnInfo(name = "original_language")
-  var originalLanguage : String? = null,
+  val originalLanguage : String?,
 
   @ColumnInfo(name = "original_title")
-  var originalTitle    : String? = null,
+  val originalTitle    : String?,
 
   @ColumnInfo(name = "overview")
-  var overview: String? = null,
+  val overview: String?,
 
   @ColumnInfo(name = "popularity")
-  var popularity: Double? = null,
+  val popularity: Double?,
 
   @ColumnInfo(name = "poster_path")
-  var posterPath: String? = null,
+  val posterPath: String?,
 
   @ColumnInfo(name = "release_date")
-  var releaseDate : String? = null,
+  val releaseDate : String?,
 
   @ColumnInfo(name = "title")
-  var title : String? = null,
+  val title : String?,
 
   @ColumnInfo(name = "video")
-  var video : Boolean? = null,
+  val video : Boolean?,
 
   @ColumnInfo(name = "vote_average")
-  var voteAverage : Double? = null,
+  val voteAverage : Double?,
 
   @ColumnInfo(name = "vote_count")
-  var voteCount : Int? = null
+  val voteCount : Int?
 
 )

@@ -19,4 +19,6 @@ class GenreViewModel(private val movieUseCase: MovieUseCase) : ViewModel() {
             _genre.postValue(it)
         }
     }
+
+
 }

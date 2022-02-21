@@ -5,29 +5,76 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieDetailResponse (
 
-  @SerializedName("adult"                 ) var adult               : Boolean?                       = null,
-  @SerializedName("backdrop_path"         ) var backdropPath        : String?                        = null,
-  @SerializedName("budget"                ) var budget              : Int?                           = null,
-  @SerializedName("genres"                ) var genres              : ArrayList<GenreResponse>              = arrayListOf(),
-  @SerializedName("homepage"              ) var homepage            : String?                        = null,
-  @SerializedName("id"                    ) var id                  : Int?                           = null,
-  @SerializedName("imdb_id"               ) var imdbId              : String?                        = null,
-  @SerializedName("original_language"     ) var originalLanguage    : String?                        = null,
-  @SerializedName("original_title"        ) var originalTitle       : String?                        = null,
-  @SerializedName("overview"              ) var overview            : String?                        = null,
-  @SerializedName("popularity"            ) var popularity          : Double?                        = null,
-  @SerializedName("poster_path"           ) var posterPath          : String?                        = null,
-  @SerializedName("production_companies"  ) var productionCompanies : ArrayList<ProductionCompanies> = arrayListOf(),
-  @SerializedName("production_countries"  ) var productionCountries : ArrayList<ProductionCountries> = arrayListOf(),
-  @SerializedName("release_date"          ) var releaseDate         : String?                        = null,
-  @SerializedName("revenue"               ) var revenue             : Int?                           = null,
-  @SerializedName("runtime"               ) var runtime             : Int?                           = null,
-  @SerializedName("spoken_languages"      ) var spokenLanguages     : ArrayList<SpokenLanguages>     = arrayListOf(),
-  @SerializedName("status"                ) var status              : String?                        = null,
-  @SerializedName("tagline"               ) var tagline             : String?                        = null,
-  @SerializedName("title"                 ) var title               : String?                        = null,
-  @SerializedName("video"                 ) var video               : Boolean?                       = null,
-  @SerializedName("vote_average"          ) var voteAverage         : Double?                        = null,
-  @SerializedName("vote_count"            ) var voteCount           : Int?                           = null
+  @SerializedName("adult")
+  val adult : Boolean?,
+
+  @SerializedName("backdrop_path")
+  val backdropPath : String?,
+
+  @SerializedName("budget")
+  val budget : Int?,
+
+  @SerializedName("genres")
+  val genres : List<GenreResponse>,
+
+  @SerializedName("homepage")
+  val homepage : String?,
+
+  @SerializedName("id")
+  val id : Int,
+
+  @SerializedName("imdb_id")
+  val imdbId: String?,
+
+  @SerializedName("original_language")
+  val originalLanguage : String?,
+
+  @SerializedName("original_title")
+  val originalTitle : String?,
+
+  @SerializedName("overview")
+  val overview : String?,
+
+  @SerializedName("popularity")
+  val popularity: Double?,
+
+  @SerializedName("poster_path")
+  val posterPath : String?,
+
+  @SerializedName("production_companies")
+  val productionCompanies : List<ProductionCompanies>,
+
+  @SerializedName("production_countries")
+  val productionCountries : List<ProductionCountries>,
+
+  @SerializedName("release_date")
+  val releaseDate : String?,
+
+  @SerializedName("revenue")
+  val revenue : Int?,
+
+  @SerializedName("runtime")
+  val runtime : Int?,
+
+  @SerializedName("spoken_languages")
+  val spokenLanguages : List<SpokenLanguages>,
+
+  @SerializedName("status")
+  val status : String?,
+
+  @SerializedName("tagline")
+  val tagline : String?,
+
+  @SerializedName("title")
+  val title : String?,
+
+  @SerializedName("video")
+  val video : Boolean?,
+
+  @SerializedName("vote_average")
+  val voteAverage : Double?,
+
+  @SerializedName("vote_count")
+  val voteCount: Int?
 
 )

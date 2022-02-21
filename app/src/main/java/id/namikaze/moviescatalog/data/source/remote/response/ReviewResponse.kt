@@ -5,12 +5,25 @@ import com.google.gson.annotations.SerializedName
 
 data class ReviewResponse (
 
-  @SerializedName("author"         ) var author        : String?        = null,
-  @SerializedName("author_details" ) var authorDetails : AuthorDetails? = AuthorDetails(),
-  @SerializedName("content"        ) var content       : String?        = null,
-  @SerializedName("created_at"     ) var createdAt     : String?        = null,
-  @SerializedName("id"             ) var id            : String?        = null,
-  @SerializedName("updated_at"     ) var updatedAt     : String?        = null,
-  @SerializedName("url"            ) var url           : String?        = null
+  @SerializedName("author")
+  val author : String?,
+
+  @SerializedName("author_details")
+  val authorDetails : AuthorDetails,
+
+  @SerializedName("content")
+  val content: String?,
+
+  @SerializedName("created_at")
+  val createdAt : String?,
+
+  @SerializedName("id")
+  val id : String?,
+
+  @SerializedName("updated_at")
+  val updatedAt : String?,
+
+  @SerializedName("url")
+  val url : String?
 
 )

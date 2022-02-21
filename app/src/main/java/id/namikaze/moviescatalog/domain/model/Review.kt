@@ -6,15 +6,15 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Review (
 
-  var id : Int? = null,
-  var idAuthor : String? = null,
-  var author : String? = null,
-  var username : String? = null,
-  var avatarPath : String? = null,
-  var rating : Int? = null,
-  var content : String? = null,
-  var createdAt : String? = null,
-  var updatedAt : String? = null,
-  var url : String? = null
+  val id : Int?,
+  val idAuthor : String?,
+  val author : String?,
+  val username : String?,
+  val avatarPath : String?,
+  val rating : Int?,
+  val content : String?,
+  val createdAt : String?,
+  val updatedAt : String?,
+  val url : String?
 
 ) : Parcelable

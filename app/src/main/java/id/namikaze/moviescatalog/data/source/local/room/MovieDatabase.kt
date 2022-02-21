@@ -13,7 +13,7 @@ import id.namikaze.moviescatalog.data.source.local.entity.*
         TrailerEntity::class
 
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 

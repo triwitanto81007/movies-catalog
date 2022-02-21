@@ -5,9 +5,16 @@ import com.google.gson.annotations.SerializedName
 
 data class MoviesResponse (
 
-  @SerializedName("page"          ) var page         : Int?               = null,
-  @SerializedName("results"       ) var results      : ArrayList<MovieResponse> = arrayListOf(),
-  @SerializedName("total_pages"   ) var totalPages   : Int?               = null,
-  @SerializedName("total_results" ) var totalResults : Int?               = null
+  @SerializedName("page")
+  val page: Int?,
+
+  @SerializedName("results")
+  val results : List<MovieResponse>,
+
+  @SerializedName("total_pages")
+  val totalPages : Int?,
+
+  @SerializedName("total_results")
+  val totalResults : Int?
 
 )

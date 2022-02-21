@@ -99,7 +99,6 @@ object DataMapper {
                 video = input.video,
                 voteAverage = input.voteAverage,
                 voteCount = input.voteCount
-
             )
         }
         fun mapEntitiesToDomain(input: MovieDetailEntity?): MovieDetail {
@@ -129,9 +128,9 @@ object DataMapper {
                     id = input.id,
                     idAuthor = it.id.toString(),
                     author = it.author,
-                    username = it.authorDetails?.username,
-                    avatarPath = it.authorDetails?.avatarPath,
-                    rating = it.authorDetails?.rating,
+                    username = it.authorDetails.username,
+                    avatarPath = it.authorDetails.avatarPath,
+                    rating = it.authorDetails.rating,
                     content = it.content,
                     createdAt = it.createdAt,
                     updatedAt = it.updatedAt,

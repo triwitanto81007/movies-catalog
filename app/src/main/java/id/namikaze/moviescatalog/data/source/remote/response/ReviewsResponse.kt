@@ -5,10 +5,19 @@ import com.google.gson.annotations.SerializedName
 
 data class ReviewsResponse (
 
-    @SerializedName("id"            ) var id           : Int?               = null,
-    @SerializedName("page"          ) var page         : Int?               = null,
-    @SerializedName("results"       ) var results      : ArrayList<ReviewResponse> = arrayListOf(),
-    @SerializedName("total_pages"   ) var totalPages   : Int?               = null,
-    @SerializedName("total_results" ) var totalResults : Int?               = null
+    @SerializedName("id")
+    val id : Int?,
+
+    @SerializedName("page")
+    val page : Int?,
+
+    @SerializedName("results")
+    val results : List<ReviewResponse>,
+
+    @SerializedName("total_pages")
+    val totalPages : Int?,
+
+    @SerializedName("total_results")
+    val totalResults : Int?
 
 )

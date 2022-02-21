@@ -11,32 +11,26 @@ data class TrailerEntity (
   @PrimaryKey
   @NonNull
   @ColumnInfo(name = "id")
-  var id : Int,
-
-  @ColumnInfo(name = "iso_639_1")
-  var iso6391 : String?  = null,
-
-  @ColumnInfo(name = "iso_3166_1")
-  var iso31661 : String?  = null,
+  val id : Int,
 
   @ColumnInfo(name = "name")
-  var name : String?  = null,
+  val name : String?,
 
   @ColumnInfo(name = "key")
-  var key: String?  = null,
+  val key: String?,
 
   @ColumnInfo(name = "site")
-  var site: String?  = null,
+  val site: String?,
 
   @ColumnInfo(name = "size")
-  var size: Int?     = null,
+  val size: Int?,
 
   @ColumnInfo(name = "type")
-  var type: String?  = null,
+  val type: String?,
 
   @ColumnInfo(name = "official")
-  var official: Boolean? = null,
+  val official: Boolean?,
 
   @ColumnInfo(name = "published_at")
-  var publishedAt : String?  = null
+  val publishedAt : String?
 )

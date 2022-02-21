@@ -6,25 +6,17 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class MovieDetail (
 
-  var id : Int? = null,
-  var adult : Boolean? = null,
-  var backdropPath : String?  = null,
-  var budget : Int? = null,
-  var homepage : String? = null,
-  var imdbId : String? = null,
-  var originalLanguage : String? = null,
-  var originalTitle : String? = null,
-  var overview : String? = null,
-  var popularity : Double? = null,
-  var posterPath : String? = null,
-  var releaseDate : String? = null,
-  var revenue : Int? = null,
-  var runtime : Int? = null,
-  var status : String? = null,
-  var tagline : String? = null,
-  var title: String? = null,
-  var video: Boolean? = null,
-  var voteAverage : Double? = null,
-  var voteCount : Int? = null
+  val id : Int?,
+  val adult : Boolean?,
+  val backdropPath : String?,
+  val originalLanguage : String?,
+  val originalTitle : String?,
+  val overview : String?,
+  val posterPath : String?,
+  val releaseDate : String?,
+  val title: String?,
+  val video: Boolean?,
+  val voteAverage : Double?,
+  val voteCount : Int?
 
 ) : Parcelable
