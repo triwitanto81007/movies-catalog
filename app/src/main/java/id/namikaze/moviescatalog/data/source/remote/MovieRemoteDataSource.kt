@@ -1,5 +1,6 @@
 package id.namikaze.moviescatalog.data.source.remote
 
+import id.namikaze.moviescatalog.BuildConfig
 import id.namikaze.moviescatalog.data.source.remote.network.ApiResponse
 import id.namikaze.moviescatalog.data.source.remote.network.ApiService
 import id.namikaze.moviescatalog.data.source.remote.response.*
@@ -9,11 +10,11 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSource {
-    override fun getGenreList(apiKey: String): Flow<ApiResponse<List<GenreResponse>>> {
+    override fun getGenreList(): Flow<ApiResponse<List<GenreResponse>>> {
         //flow -> adalah builder untuk membuat Flow
         return flow {
             try {
-                val response = apiService.getGenreList(apiKey)
+                val response = apiService.getGenreList(BuildConfig.API_KEY)
                 // emit -> operator untuk mengirimkan value ke dalam Flow
                 emit(ApiResponse.Success(response.genres))
             } catch (e: Exception) {
@@ -23,10 +24,10 @@ class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSo
         }.flowOn(Dispatchers.IO) //mendefinisikan proses mengirim data dilakukan di mana
     }
 
-    override fun getMovieList(apiKey: String, withGenres: String, page: String): Flow<ApiResponse<List<MovieResponse>>> {
+    override fun getMovieList(withGenres: String, page: String): Flow<ApiResponse<List<MovieResponse>>> {
         return flow {
             try {
-                val response = apiService.getMovieList(apiKey, withGenres, page)
+                val response = apiService.getMovieList(BuildConfig.API_KEY, withGenres, page)
                 emit(ApiResponse.Success(response.results))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
@@ -35,10 +36,10 @@ class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSo
         }.flowOn(Dispatchers.IO)
     }
 
-    override fun getMovieDetail(apiKey: String, idMovie: String): Flow<ApiResponse<MovieDetailResponse>> {
+    override fun getMovieDetail(idMovie: String): Flow<ApiResponse<MovieDetailResponse>> {
         return flow {
             try {
-                val response = apiService.getMovieDetail(idMovie, apiKey)
+                val response = apiService.getMovieDetail(idMovie, BuildConfig.API_KEY)
                 emit(ApiResponse.Success(response))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
@@ -47,10 +48,10 @@ class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSo
         }.flowOn(Dispatchers.IO)
     }
 
-    override fun getReview(apiKey: String, idMovie: String, page: String): Flow<ApiResponse<ReviewsResponse>> {
+    override fun getReview(idMovie: String, page: String): Flow<ApiResponse<ReviewsResponse>> {
         return flow {
             try {
-                val response = apiService.getReview(idMovie, apiKey, page)
+                val response = apiService.getReview(idMovie, BuildConfig.API_KEY, page)
                 emit(ApiResponse.Success(response))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
@@ -59,10 +60,10 @@ class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSo
         }.flowOn(Dispatchers.IO)
     }
 
-    override fun getTrailer(apiKey: String, idMovie: String): Flow<ApiResponse<TrailersResponse>> {
+    override fun getTrailer(idMovie: String): Flow<ApiResponse<TrailersResponse>> {
         return flow {
             try {
-                val response = apiService.getTrailer(idMovie, apiKey)
+                val response = apiService.getTrailer(idMovie, BuildConfig.API_KEY)
                 emit(ApiResponse.Success(response))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))

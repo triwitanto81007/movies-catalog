@@ -41,9 +41,6 @@ class DetailMovieFragment : Fragment() {
     private var isLoadMore = false
     private var isLoading = false
     private var pageNumber = 1
-    private var offset = 0
-    private var limit = 20
-    private var counter = 20
 
     private val recyclerViewAdapter by lazy {
         ReviewAdapter()
@@ -120,15 +117,15 @@ class DetailMovieFragment : Fragment() {
         })
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getMovieDetail(BuildConfig.API_KEY, args.movieId.toInt())
+            viewModel.getMovieDetail(args.movieId.toInt())
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getReview(BuildConfig.API_KEY, args.movieId.toInt(), pageNumber.toString(), limit, offset)
+            viewModel.getReview(args.movieId.toInt(), pageNumber.toString())
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getTrailer(BuildConfig.API_KEY, args.movieId.toInt())
+            viewModel.getTrailer(args.movieId.toInt())
         }
     }
     @SuppressLint("SetTextI18n")
@@ -145,11 +142,10 @@ class DetailMovieFragment : Fragment() {
                     if (!isLoading) {
                         isLoading = true
                         pageNumber += 1
-                        offset += counter
 
                         pbLoadmoreMovieDetail.visibility = View.VISIBLE
                         viewLifecycleOwner.lifecycleScope.launch {
-                            viewModel.getReview(BuildConfig.API_KEY, args.movieId.toInt(), pageNumber.toString(), limit, offset)
+                            viewModel.getReview(args.movieId.toInt(), pageNumber.toString())
                         }
                     }
                 }

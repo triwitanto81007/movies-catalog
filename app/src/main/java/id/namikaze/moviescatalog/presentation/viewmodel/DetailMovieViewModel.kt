@@ -21,20 +21,20 @@ class DetailMovieViewModel(private val movieUseCase: MovieUseCase) : ViewModel()
     private var _trailer = MutableLiveData<Resource<Trailer>>()
     val trailer: LiveData<Resource<Trailer>> = _trailer
 
-    suspend fun getMovieDetail(apiKey: String, idMovie: Int) {
-        movieUseCase.getMovieDetail(apiKey, idMovie).collect{
+    suspend fun getMovieDetail(idMovie: Int) {
+        movieUseCase.getMovieDetail(idMovie).collect{
             _movieDetail.postValue(it)
         }
     }
 
-    suspend fun getReview(apiKey: String, idMovie: Int, page: String, limit: Int, offset: Int) {
-        movieUseCase.getReview(apiKey, idMovie, page, limit, offset).collect{
+    suspend fun getReview(idMovie: Int, page: String) {
+        movieUseCase.getReview(idMovie, page).collect{
             _review.postValue(it)
         }
     }
 
-    suspend fun getTrailer(apiKey: String, idMovie: Int) {
-        movieUseCase.getTrailer(apiKey, idMovie).collect{
+    suspend fun getTrailer(idMovie: Int) {
+        movieUseCase.getTrailer(idMovie).collect{
             _trailer.postValue(it)
         }
     }

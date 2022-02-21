@@ -33,9 +33,6 @@ class MoviesFragment : Fragment() {
     private var isLoadMore = false
     private var isLoading = false
     private var pageNumber = 1
-    private var offset = 0
-    private var limit = 20
-    private var counter = 20
 
     private val recyclerViewAdapter by lazy {
         MovieAdapter(::navigateToMovieeDetail)
@@ -73,7 +70,7 @@ class MoviesFragment : Fragment() {
         })
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getMovieList(BuildConfig.API_KEY, args.withGenres.toInt(), pageNumber.toString(), limit, offset)
+            viewModel.getMovieList(args.withGenres.toInt(), pageNumber.toString())
         }
 
     }
@@ -88,11 +85,10 @@ class MoviesFragment : Fragment() {
                 if (!isLoading) {
                     isLoading = true
                     pageNumber += 1
-                    offset += counter
 
                     binding.pbLoadmoreMovies.visibility = View.VISIBLE
                     viewLifecycleOwner.lifecycleScope.launch {
-                        viewModel.getMovieList(BuildConfig.API_KEY, args.withGenres.toInt(), pageNumber.toString(), limit, offset)
+                        viewModel.getMovieList(args.withGenres.toInt(), pageNumber.toString())
                     }
                 }
             }

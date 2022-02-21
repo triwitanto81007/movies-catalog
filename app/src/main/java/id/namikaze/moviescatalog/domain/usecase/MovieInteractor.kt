@@ -7,14 +7,14 @@ import kotlinx.coroutines.flow.Flow
 
 class MovieInteractor(private val movieRepository: IMovieRepository) : MovieUseCase {
 
-    override fun getGenreList(apiKey: String): Flow<Resource<List<Genre>>>  = movieRepository.getGenreList(apiKey)
+    override fun getGenreList(): Flow<Resource<List<Genre>>>  = movieRepository.getGenreList()
 
-    override fun getMovieList(apiKey: String, withGenres: Int, page: String, limit: Int, offset: Int): Flow<Resource<List<Movie>>> = movieRepository.getMovieList(apiKey, withGenres, page, limit, offset)
+    override fun getMovieList(withGenres: Int, page: String): Flow<Resource<List<Movie>>> = movieRepository.getMovieList(withGenres, page)
 
-    override fun getMovieDetail(apiKey: String, idMovie: Int): Flow<Resource<MovieDetail>> = movieRepository.getMovieDetail(apiKey, idMovie)
+    override fun getMovieDetail(idMovie: Int): Flow<Resource<MovieDetail>> = movieRepository.getMovieDetail(idMovie)
 
-    override fun getReview(apiKey: String, idMovie: Int, page: String, limit: Int, offset: Int): Flow<Resource<List<Review>>> = movieRepository.getReview(apiKey, idMovie, page, limit, offset)
+    override fun getReview(idMovie: Int, page: String): Flow<Resource<List<Review>>> = movieRepository.getReview(idMovie, page)
 
-    override fun getTrailer(apiKey: String, idMovie: Int): Flow<Resource<Trailer>> = movieRepository.getTrailer(apiKey, idMovie)
+    override fun getTrailer(idMovie: Int): Flow<Resource<Trailer>> = movieRepository.getTrailer(idMovie)
 
 }

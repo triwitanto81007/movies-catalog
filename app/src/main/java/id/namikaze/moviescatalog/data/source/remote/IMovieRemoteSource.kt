@@ -5,14 +5,14 @@ import id.namikaze.moviescatalog.data.source.remote.response.*
 import kotlinx.coroutines.flow.Flow
 
 interface IMovieRemoteSource {
-    fun getGenreList(apiKey: String): Flow<ApiResponse<List<GenreResponse>>>
+    fun getGenreList(): Flow<ApiResponse<List<GenreResponse>>>
 
-    fun getMovieList(apiKey: String, withGenres: String, page: String): Flow<ApiResponse<List<MovieResponse>>>
+    fun getMovieList(withGenres: String, page: String): Flow<ApiResponse<List<MovieResponse>>>
 
-    fun getMovieDetail(apiKey: String, idMovie: String): Flow<ApiResponse<MovieDetailResponse>>
+    fun getMovieDetail(idMovie: String): Flow<ApiResponse<MovieDetailResponse>>
 
-    fun getReview(apiKey: String, idMovie: String, page: String): Flow<ApiResponse<ReviewsResponse>>
+    fun getReview(idMovie: String, page: String): Flow<ApiResponse<ReviewsResponse>>
 
-    fun getTrailer(apiKey: String, idMovie: String): Flow<ApiResponse<TrailersResponse>>
+    fun getTrailer(idMovie: String): Flow<ApiResponse<TrailersResponse>>
 
 }

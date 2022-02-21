@@ -62,7 +62,7 @@ class GenreFragment : Fragment() {
         //membuat coroutine baru di lifecycleScope
         //lifecycleScope otomatis membatalkan operasi yang berjalan lama saat Lifecycle DESTROYED
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getGenreList(BuildConfig.API_KEY)
+            viewModel.getGenreList()
         }
     }
 

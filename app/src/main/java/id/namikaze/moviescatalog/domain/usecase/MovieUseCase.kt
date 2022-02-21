@@ -6,13 +6,13 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieUseCase {
 
-    fun getGenreList(apiKey: String): Flow<Resource<List<Genre>>>
+    fun getGenreList(): Flow<Resource<List<Genre>>>
 
-    fun getMovieList(apiKey: String, withGenres: Int, page: String, limit: Int, offset: Int): Flow<Resource<List<Movie>>>
+    fun getMovieList(withGenres: Int, page: String): Flow<Resource<List<Movie>>>
 
-    fun getMovieDetail(apiKey: String, idMovie: Int): Flow<Resource<MovieDetail>>
+    fun getMovieDetail(idMovie: Int): Flow<Resource<MovieDetail>>
 
-    fun getReview(apiKey: String, idMovie: Int, page: String, limit: Int, offset: Int): Flow<Resource<List<Review>>>
+    fun getReview(idMovie: Int, page: String): Flow<Resource<List<Review>>>
 
-    fun getTrailer(apiKey: String, idMovie: Int): Flow<Resource<Trailer>>
+    fun getTrailer(idMovie: Int): Flow<Resource<Trailer>>
 }
