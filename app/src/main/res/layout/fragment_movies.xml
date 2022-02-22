@@ -17,14 +17,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/il_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="@string/text_search_movies"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_movies">
+
+        <AutoCompleteTextView
+            android:id="@+id/ed_search"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_movies"
         android:layout_width="@dimen/match_constraint"
         android:layout_height="@dimen/match_constraint"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tb_movies">
+        app:layout_constraintTop_toBottomOf="@+id/il_search">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -46,6 +66,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/pb_movies"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/il_search"
+        app:layout_constraintTop_toTopOf="@+id/il_search"
+        app:layout_constraintBottom_toBottomOf="@+id/il_search" />
 
     <ProgressBar
         android:id="@+id/pb_loadmore_movies"

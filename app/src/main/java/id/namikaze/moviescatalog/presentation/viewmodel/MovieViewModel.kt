@@ -16,9 +16,18 @@ class MovieViewModel @Inject constructor(private val movieUseCase: MovieUseCase)
     private var _movie = MutableLiveData<Resource<List<Movie>>>()
     val movie: LiveData<Resource<List<Movie>>> = _movie
 
+    private var _search = MutableLiveData<Resource<List<Movie>>>()
+    val search: LiveData<Resource<List<Movie>>> = _search
+
     suspend fun getMovieList(withGenres: Int, page: String) {
         movieUseCase.getMovieList(withGenres, page).collect{
             _movie.postValue(it)
+        }
+    }
+
+    suspend fun getSearchMovieList(query: String) {
+        movieUseCase.getSearchMovieList(query).collect{
+            _search.postValue(it)
         }
     }
 }

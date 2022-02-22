@@ -40,6 +40,18 @@ class MovieRemoteDataSource @Inject constructor(private val apiService: ApiServi
         }.flowOn(Dispatchers.IO)
     }
 
+    override fun getSearchMovieList(query: String): Flow<ApiResponse<List<MovieResponse>>> {
+        return flow {
+            try {
+                val response = apiService.getSearchMovieList(BuildConfig.API_KEY, query)
+                emit(ApiResponse.Success(response.results))
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+                e.printStackTrace()
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
     override fun getMovieDetail(idMovie: String): Flow<ApiResponse<MovieDetailResponse>> {
         return flow {
             try {

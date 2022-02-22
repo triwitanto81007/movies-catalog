@@ -14,5 +14,7 @@
     <string name="text_review">Review</string>
     <string name="text_movie">Movie</string>
     <string name="text_no_trailer_available">No trailer available</string>
+    <string name="text_search_movies">Search movies</string>
+    <string name="text_search_movies_2">Search Movies</string>
 
 </resources>

@@ -10,6 +10,8 @@ interface MovieUseCase {
 
     fun getMovieList(withGenres: Int, page: String): Flow<Resource<List<Movie>>>
 
+    fun getSearchMovieList(query: String): Flow<Resource<List<Movie>>>
+
     fun getMovieDetail(idMovie: Int): Flow<Resource<MovieDetail>>
 
     fun getReview(idMovie: Int, page: String): Flow<Resource<List<Review>>>

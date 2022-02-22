@@ -38,6 +38,18 @@ class MovieRepository @Inject constructor(
         }.asFlow()
     }
 
+    override fun getSearchMovieList(query: String): Flow<Resource<List<Movie>>> {
+        return object: NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
+            override suspend fun loadCallResult(data: List<MovieResponse>): List<Movie> {
+                return DataMapper.moviesMapperResponsesToDomain(data)
+            }
+
+            override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
+                movieRemoteDataSource.getSearchMovieList(query)
+
+        }.asFlow()
+    }
+
     override fun getMovieDetail(idMovie: Int): Flow<Resource<MovieDetail>> {
         return object: NetworkBoundResource<MovieDetail, MovieDetailResponse>() {
             override suspend fun loadCallResult(data: MovieDetailResponse): MovieDetail {
