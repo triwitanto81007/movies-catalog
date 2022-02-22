@@ -25,8 +25,8 @@ class MovieViewModel @Inject constructor(private val movieUseCase: MovieUseCase)
         }
     }
 
-    suspend fun getSearchMovieList(query: String) {
-        movieUseCase.getSearchMovieList(query).collect{
+    suspend fun getSearchMovieList(query: String, page: String) {
+        movieUseCase.getSearchMovieList(query, page).collect{
             _search.postValue(it)
         }
     }

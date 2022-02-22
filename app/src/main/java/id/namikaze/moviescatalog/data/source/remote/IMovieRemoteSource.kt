@@ -9,7 +9,7 @@ interface IMovieRemoteSource {
 
     fun getMovieList(withGenres: String, page: String): Flow<ApiResponse<List<MovieResponse>>>
 
-    fun getSearchMovieList(query: String): Flow<ApiResponse<List<MovieResponse>>>
+    fun getSearchMovieList(query: String, page: String): Flow<ApiResponse<List<MovieResponse>>>
 
     fun getMovieDetail(idMovie: String): Flow<ApiResponse<MovieDetailResponse>>
 

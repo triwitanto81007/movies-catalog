@@ -40,6 +40,7 @@ class MoviesFragment : Fragment() {
     private var pageNumber = 1
 
     private var statusSearch = false
+    private var textSearch = ""
 
     private val recyclerViewAdapter by lazy {
         MovieAdapter(::navigateToMovieeDetail)
@@ -49,7 +50,8 @@ class MoviesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMoviesBinding.inflate(inflater, container, false)
-        return binding.root    }
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,7 +86,7 @@ class MoviesFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     it.getSuccessStateIfNotHandled()?.let { data ->
-                        setupResponseSearchMovie(data)
+                        setupResponseMovie(data)
                         binding.pbMovies.visibility = View.GONE
                     }
                 }
@@ -100,7 +102,6 @@ class MoviesFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getMovieList(args.withGenres.toInt(), pageNumber.toString())
         }
-
     }
 
     private fun setupUi() {
@@ -109,24 +110,24 @@ class MoviesFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.nsvMovies.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
-            if (!statusSearch) {
-                if (scrollY == (v!!.getChildAt(0).measuredHeight - v.measuredHeight)) {
-                    if (!isLoading) {
-                        isLoading = true
-                        pageNumber += 1
+            if (scrollY == (v!!.getChildAt(0).measuredHeight - v.measuredHeight)) {
+                if (!isLoading) {
+                    isLoading = true
+                    pageNumber += 1
 
-                        binding.pbLoadmoreMovies.visibility = View.VISIBLE
+                    binding.pbLoadmoreMovies.visibility = View.VISIBLE
+                    if (!statusSearch) {
                         viewLifecycleOwner.lifecycleScope.launch {
                             viewModel.getMovieList(args.withGenres.toInt(), pageNumber.toString())
+                        }
+                    } else {
+                        lifecycleScope.launch {
+                            viewModel.getSearchMovieList(textSearch, pageNumber.toString())
                         }
                     }
                 }
             }
         })
-    }
-
-    private fun setupResponseSearchMovie(data: List<Movie>) {
-        recyclerViewAdapter.setData(data, false)
     }
 
     private fun setupResponseMovie(data: List<Movie>) {
@@ -166,7 +167,11 @@ class MoviesFragment : Fragment() {
         binding.edSearch.addTextChangedListener(object : TextWatcher {
             var timer: CountDownTimer? = null
 
-            override fun afterTextChanged(s: Editable?) {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (timer != null) {
                     timer!!.cancel()
                 }
@@ -175,35 +180,34 @@ class MoviesFragment : Fragment() {
                     override fun onTick(millisUntilFinished: Long) {}
                     override fun onFinish() {
                         if (s.toString().isEmpty()){
-                            pageNumber = 1
-                            statusSearch = false
-                            isLoadMore = false
-                            binding.tbMovies.title = args.nameGenres
-                            viewLifecycleOwner.lifecycleScope.launch {
-                                viewModel.getMovieList(args.withGenres.toInt(), pageNumber.toString())
+                            if (statusSearch){
+                                pageNumber = 1
+                                statusSearch = false
+                                isLoadMore = false
+                                binding.tbMovies.title = args.nameGenres
+                                viewLifecycleOwner.lifecycleScope.launch {
+                                    viewModel.getMovieList(args.withGenres.toInt(), pageNumber.toString())
+                                }
                             }
                         } else {
+                            textSearch = s.toString()
+                            pageNumber = 1
                             statusSearch = true
+                            isLoadMore = false
                             binding.tbMovies.title = requireContext().resources.getText(R.string.text_search_movies_2)
                             binding.pbMovies.visibility = View.VISIBLE
                             lifecycleScope.launch {
-                                viewModel.getSearchMovieList(s.toString())
+                                viewModel.getSearchMovieList(s.toString(), pageNumber.toString())
                             }
                         }
                     }
                 }.start()
             }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
     }
 
-
-
-        companion object {
+    companion object {
         const val SPAN_COUNT_MOVIE_ITEM = 3
     }
 

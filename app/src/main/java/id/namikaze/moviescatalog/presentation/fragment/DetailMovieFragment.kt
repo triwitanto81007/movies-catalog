@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.widget.NestedScrollView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
+import id.namikaze.moviescatalog.BR
 import id.namikaze.moviescatalog.BuildConfig
 import id.namikaze.moviescatalog.R
 import id.namikaze.moviescatalog.adapter.ReviewAdapter
@@ -48,7 +50,7 @@ class DetailMovieFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentDetailMovieBinding.inflate(inflater, container, false)
+        _binding  = DataBindingUtil.inflate(inflater, R.layout.fragment_detail_movie, container, false)
         return binding.root
     }
 
@@ -68,6 +70,7 @@ class DetailMovieFragment : Fragment() {
                 is Resource.Success -> {
                     it.getSuccessStateIfNotHandled()?.let { data ->
                         binding.pbTeamDetail.visibility = View.GONE
+                        binding.detailMovie = data
                         setupUi(data)
                     }
                 }
@@ -132,11 +135,8 @@ class DetailMovieFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun setupUi(data: MovieDetail) {
         binding.apply{
-            Glide.with(this@DetailMovieFragment).load(BuildConfig.IMAGE_BG_URL + data.backdropPath).placeholder(R.drawable.ic_default_image).into(contentHeader.ivBackgroundMovieDetail)
-            Glide.with(this@DetailMovieFragment).load(BuildConfig.IMAGE_URL + data.posterPath).placeholder(R.drawable.ic_default_cover_movie).into(contentHeader.ivCoverMovieDetail)
-            contentHeader.tvTitleNameMovieDetail.text = data.title
-            contentHeader.tvRatingMovieDetail.text = "${data.voteAverage}/10"
-            contentHeader.tvOverviewMovieDetail.text = data.overview
+            Glide.with(this@DetailMovieFragment).load(BuildConfig.IMAGE_BG_URL + data.backdropPath).placeholder(R.drawable.ic_default_image).into(ivBackgroundMovieDetail)
+            Glide.with(this@DetailMovieFragment).load(BuildConfig.IMAGE_URL + data.posterPath).placeholder(R.drawable.ic_default_cover_movie).into(ivCoverMovieDetail)
 
             nsvMoviesDetail.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
                 if (scrollY == (v!!.getChildAt(0).measuredHeight - v.measuredHeight)) {
@@ -160,8 +160,8 @@ class DetailMovieFragment : Fragment() {
                 recyclerViewAdapter.setData(data, false)
                 isLoadMore = true
             }else {
-                binding.contentReview.tvTitleReviewMovieDetail.visibility = View.GONE
-                binding.contentReview.rvReviewMovieDetail.visibility = View.GONE
+                binding.tvTitleReviewMovieDetail.visibility = View.GONE
+                binding.rvReviewMovieDetail.visibility = View.GONE
             }
         }else{
             if (isLoading) {
@@ -189,7 +189,7 @@ class DetailMovieFragment : Fragment() {
         }
     }
 
-    private fun setupRecyclerView() = with(binding.contentReview.rvReviewMovieDetail) {
+    private fun setupRecyclerView() = with(binding.rvReviewMovieDetail) {
         setHasFixedSize(true)
         layoutManager = LinearLayoutManager(context)
         adapter = recyclerViewAdapter
