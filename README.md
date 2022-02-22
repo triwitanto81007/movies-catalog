@@ -1,5 +1,13 @@
 # movies-catalog
 
+Latest addition
+1. Add Fitur Search Movies
+2. Change Koin to Dagger Hilt
+3. Move Api Key to package Data
+4. Remove local database
+5. Add Data Binding
+   
+Fitur
 1. Create a screen to display the list of official genres for movies.
 2. Create a screen to list of discover movies by genre.  
 3. Show the primary information about a movie when user click on of the movie.  
@@ -12,6 +20,7 @@
 
 <img src="https://i.ibb.co/W3cxCpn/photo-2022-02-04-21-32-13.jpg" width="25%" height="25%"> <img src="https://i.ibb.co/fqc71dG/photo-2022-02-04-21-32-14.jpg" width="25%" height="25%">  <img src="https://i.ibb.co/8cw6pcj/photo-2022-02-04-21-32-13-2.jpg" width="25%" height="25%">
 
+Technology
 1. Architectural Pattern MVVM
 2. Clean Architectur
 3. Koin
