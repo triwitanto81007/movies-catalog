@@ -4,8 +4,9 @@ import id.namikaze.moviescatalog.data.Resource
 import id.namikaze.moviescatalog.domain.model.*
 import id.namikaze.moviescatalog.domain.repository.IMovieRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class MovieInteractor(private val movieRepository: IMovieRepository) : MovieUseCase {
+class MovieInteractor @Inject constructor(private val movieRepository: IMovieRepository) : MovieUseCase {
 
     override fun getGenreList(): Flow<Resource<List<Genre>>>  = movieRepository.getGenreList()
 

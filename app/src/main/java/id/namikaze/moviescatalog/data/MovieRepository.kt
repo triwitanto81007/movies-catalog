@@ -7,8 +7,11 @@ import id.namikaze.moviescatalog.domain.model.*
 import id.namikaze.moviescatalog.domain.repository.IMovieRepository
 import id.namikaze.moviescatalog.utlis.DataMapper
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MovieRepository(
+@Singleton
+class MovieRepository @Inject constructor(
     private val movieRemoteDataSource: IMovieRemoteSource,
 ): IMovieRepository {
     override fun getGenreList(): Flow<Resource<List<Genre>>> {

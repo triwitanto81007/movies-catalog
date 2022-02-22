@@ -1,29 +1,30 @@
 package id.namikaze.moviescatalog.presentation.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import id.namikaze.moviescatalog.BuildConfig
+import dagger.hilt.android.AndroidEntryPoint
 import id.namikaze.moviescatalog.adapter.GenreAdapter
 import id.namikaze.moviescatalog.data.Resource
 import id.namikaze.moviescatalog.databinding.FragmentGenreBinding
 import id.namikaze.moviescatalog.presentation.viewmodel.GenreViewModel
 import kotlinx.coroutines.launch
-import org.koin.android.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class GenreFragment : Fragment() {
+
+    private val viewModel: GenreViewModel by viewModels()
 
     //membuat non-null type
     private lateinit var _binding: FragmentGenreBinding
     private val binding get() = _binding
-
-    private val viewModel: GenreViewModel by viewModel()
 
     //menginisiasi variabel ketika dipanggil
     private val recyclerViewAdapter by lazy {

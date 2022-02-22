@@ -1,6 +1,7 @@
 package id.namikaze.moviescatalog.data.source.remote
 
 import id.namikaze.moviescatalog.BuildConfig
+import id.namikaze.moviescatalog.R
 import id.namikaze.moviescatalog.data.source.remote.network.ApiResponse
 import id.namikaze.moviescatalog.data.source.remote.network.ApiService
 import id.namikaze.moviescatalog.data.source.remote.response.*
@@ -8,8 +9,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSource {
+@Singleton
+class MovieRemoteDataSource @Inject constructor(private val apiService: ApiService) : IMovieRemoteSource {
     override fun getGenreList(): Flow<ApiResponse<List<GenreResponse>>> {
         //flow -> adalah builder untuk membuat Flow
         return flow {
@@ -64,7 +68,11 @@ class MovieRemoteDataSource(private val apiService: ApiService) : IMovieRemoteSo
         return flow {
             try {
                 val response = apiService.getTrailer(idMovie, BuildConfig.API_KEY)
-                emit(ApiResponse.Success(response))
+                if (response.results.isNotEmpty()) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Error("No trailer available"))
+                }
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
                 e.printStackTrace()

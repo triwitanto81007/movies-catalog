@@ -1,20 +1,19 @@
 package id.namikaze.moviescatalog.di
 
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 import id.namikaze.moviescatalog.domain.usecase.MovieInteractor
 import id.namikaze.moviescatalog.domain.usecase.MovieUseCase
-import id.namikaze.moviescatalog.presentation.viewmodel.DetailMovieViewModel
-import id.namikaze.moviescatalog.presentation.viewmodel.GenreViewModel
-import id.namikaze.moviescatalog.presentation.viewmodel.MovieViewModel
-import org.koin.android.viewmodel.dsl.viewModel
-import org.koin.dsl.module
 
-val useCaseModule = module {
-    factory<MovieUseCase> { MovieInteractor(get()) }
-}
+@Module
+@InstallIn(ViewModelComponent::class)
+abstract class AppModule {
 
-val viewModelModule =  module {
-    viewModel { GenreViewModel(get()) }
-    viewModel { MovieViewModel(get()) }
-    viewModel { DetailMovieViewModel(get()) }
+    @Binds
+    @ViewModelScoped
+    abstract fun provideMovieUseCase(movieInteractor: MovieInteractor): MovieUseCase
 
 }

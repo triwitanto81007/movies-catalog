@@ -3,14 +3,17 @@ package id.namikaze.moviescatalog.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import id.namikaze.moviescatalog.data.Resource
 import id.namikaze.moviescatalog.domain.model.MovieDetail
 import id.namikaze.moviescatalog.domain.model.Review
 import id.namikaze.moviescatalog.domain.model.Trailer
 import id.namikaze.moviescatalog.domain.usecase.MovieUseCase
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
-class DetailMovieViewModel(private val movieUseCase: MovieUseCase) : ViewModel() {
+@HiltViewModel
+class DetailMovieViewModel @Inject constructor(private val movieUseCase: MovieUseCase) : ViewModel() {
 
     private var _movieDetail = MutableLiveData<Resource<MovieDetail>>()
     val movieDetail: LiveData<Resource<MovieDetail>> = _movieDetail

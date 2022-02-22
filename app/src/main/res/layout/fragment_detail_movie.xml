@@ -36,19 +36,23 @@
                 android:id="@+id/content_header"
                 layout="@layout/content_header_detail_movie"/>
 
-            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                android:id="@+id/yp_trailer_movie_detail"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="@dimen/general_parent_margin"
-                app:showYouTubeButton="false"
-                app:showFullScreenButton="false"
-                app:showSeekBar="false"
-                app:showVideoDuration="false"
-                app:showVideoCurrentTime="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" >
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/yp_trailer_movie_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
 
             <include
                 android:id="@+id/content_review"

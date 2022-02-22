@@ -7,26 +7,27 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import id.namikaze.moviescatalog.BuildConfig
+import dagger.hilt.android.AndroidEntryPoint
 import id.namikaze.moviescatalog.adapter.MovieAdapter
 import id.namikaze.moviescatalog.data.Resource
 import id.namikaze.moviescatalog.databinding.FragmentMoviesBinding
 import id.namikaze.moviescatalog.domain.model.Movie
 import id.namikaze.moviescatalog.presentation.viewmodel.MovieViewModel
 import kotlinx.coroutines.launch
-import org.koin.android.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class MoviesFragment : Fragment() {
+
+    private val viewModel: MovieViewModel by viewModels()
 
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!!
-
-    private val viewModel: MovieViewModel by viewModel()
 
     private val args: MoviesFragmentArgs by navArgs()
 

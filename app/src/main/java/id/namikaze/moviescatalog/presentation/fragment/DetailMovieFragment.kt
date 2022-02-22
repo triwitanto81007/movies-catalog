@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import dagger.hilt.android.AndroidEntryPoint
 import id.namikaze.moviescatalog.BuildConfig
 import id.namikaze.moviescatalog.R
 import id.namikaze.moviescatalog.adapter.ReviewAdapter
@@ -27,14 +28,14 @@ import id.namikaze.moviescatalog.domain.model.Review
 import id.namikaze.moviescatalog.domain.model.Trailer
 import id.namikaze.moviescatalog.presentation.viewmodel.DetailMovieViewModel
 import kotlinx.coroutines.launch
-import org.koin.android.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class DetailMovieFragment : Fragment() {
+
+    private val viewModel: DetailMovieViewModel by viewModels()
 
     private var _binding: FragmentDetailMovieBinding? = null
     private val binding get() = _binding!!
-
-    private val viewModel: DetailMovieViewModel by viewModel()
 
     private val args: DetailMovieFragmentArgs by navArgs()
 
@@ -159,6 +160,7 @@ class DetailMovieFragment : Fragment() {
                 recyclerViewAdapter.setData(data, false)
                 isLoadMore = true
             }else {
+                binding.contentReview.tvTitleReviewMovieDetail.visibility = View.GONE
                 binding.contentReview.rvReviewMovieDetail.visibility = View.GONE
             }
         }else{

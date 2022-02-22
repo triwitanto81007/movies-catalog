@@ -13,5 +13,6 @@
     <string name="text_movies">Movies</string>
     <string name="text_review">Review</string>
     <string name="text_movie">Movie</string>
+    <string name="text_no_trailer_available">No trailer available</string>
 
 </resources>
